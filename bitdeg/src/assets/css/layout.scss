@@ -1,0 +1,35 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/utilities";
+
+$utilities: map-merge(
+  $utilities, (
+    "width": map-merge(
+      map-get($utilities, "width"),
+      ( responsive: true ),
+    ),
+    "margin": map-merge(
+      map-get($utilities, "margin"),
+      ( responsive: true )
+    ),
+    "padding": map-merge(
+      map-get($utilities, "padding"),
+      ( responsive: true )
+    )
+  )
+);
+
+$layout-breakpoint-xsmall: 400px;
+$layout-breakpoint-small: 600px;
+$layout-breakpoint-medium: 768px;
+$layout-breakpoint-large: 992px;
+$layout-breakpoint-xlarge: 1200px;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1300px,
+  xxl: 1900px,
+);

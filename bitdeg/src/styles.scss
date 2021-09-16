@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+@import "theme.scss";
+@import "layout.scss";
+@import "bootstrap.scss";
+
+@font-face {
+  font-family: "Trueno";
+  src: url("./assets/fonts/Trueno/Trueno.ttf") format("truetype");
+}
+
+$enable-negative-margins: true;
