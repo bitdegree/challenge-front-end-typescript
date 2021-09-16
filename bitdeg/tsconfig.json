@@ -2,12 +2,13 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "strictNullChecks": false,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
@@ -22,9 +23,11 @@
       "@posts/*": ["app/posts/*"],
       "@env/*": ["environments/*"],
     },
+    "typeRoots": ["node_modules/@types"],
     "lib": [
       "es2018",
-      "dom"
+      "dom",
+      "dom.iterable"
     ]
   },
   "angularCompilerOptions": {
