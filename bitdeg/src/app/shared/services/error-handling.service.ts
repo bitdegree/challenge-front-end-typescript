@@ -6,7 +6,7 @@ import { MessageService } from "./message.service";
 export type ErrorHandler = <T>(
   operation?: string,
   result?: T,
-  customMsg?: string
+  customMsg?: string,
 ) => (error: HttpErrorResponse) => Observable<T>;
 
 @Injectable({
@@ -26,7 +26,7 @@ export class ErrorHandlerService {
     serviceName = "",
     operation = "",
     result = {} as T,
-    customMsg: string
+    customMsg: string,
   ) {
     return (error: HttpErrorResponse): Observable<T> => {
       if (error.status === 422) {

@@ -4,7 +4,7 @@
 
 export const env = {
   production: false,
-  BASE_API: "https://jsonplaceholder.typicode.com"
+  BASE_API: "https://jsonplaceholder.typicode.com",
 };
 
 /*
