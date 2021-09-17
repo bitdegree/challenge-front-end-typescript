@@ -20,7 +20,7 @@ export class PhotoService {
     //
   }
 
-  find(id: number=1): Observable<Photo> {
+  find(id: number = 1): Observable<Photo> {
     return this.http
       .get<Photo>(`${this.baseUrl}/${id}`)
       .pipe(catchError(this.handleError(`Find photo`, {} as Photo)));
