@@ -27,12 +27,10 @@ export class HomeScreenComponent implements OnInit {
       ); //I sort the data since I want my first element be to last created post
   }
 
-  showPostInit(posts : Post[]){
-    
-  }
-
   showMorePosts(howMany : number){
     this.ShownPostsCount += howMany;
+    if(this.ShownPostsCount >= this.Posts.length )
+      this.ShownPostsCount = this.Posts.length -1
   }
 
   @HostListener("window:scroll", ["$event"])

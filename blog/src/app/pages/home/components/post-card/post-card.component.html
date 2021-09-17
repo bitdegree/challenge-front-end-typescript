@@ -1,8 +1,8 @@
-<div class="post card">
+<div class="post card" >
     <div class="post-header">
-        <p [innerText]="Post.title"></p>
+        <p [innerText]="Post.title" (click)="toggleBody()"></p>
     </div>
-    <div class="post-body">
+    <div class="post-body" *ngIf="BodyToggle" [@cardToggleAnimation]>
         <p [innerText]="Post.body"></p>
     </div>
 </div>
