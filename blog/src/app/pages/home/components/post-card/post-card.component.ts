@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Post } from 'src/app/models/post.model';
 
 @Component({
@@ -25,7 +26,7 @@ export class PostCardComponent implements OnInit {
 
   @Input() Post !: Post;
 
-  constructor() { }
+  constructor(readonly router : Router) { }
 
   BodyToggle : boolean = false;
 
@@ -34,6 +35,10 @@ export class PostCardComponent implements OnInit {
 
   toggleBody(){
     this.BodyToggle = !this.BodyToggle;
+  }
+
+  headerClick(){
+    this.router.navigate(['/post', {postID : this.Post.id}]);
   }
 
 }

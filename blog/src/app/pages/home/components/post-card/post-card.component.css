@@ -1,13 +1,21 @@
 .post-header{
-    font-size: x-large;
+    font-size: large;
     font-weight: bold;
     transition: width 2s;
-    text-align: center;
+    cursor: pointer;
+    text-transform: capitalize;
 }
 
+
 .post-body {
+    height: 20px;
     overflow: hidden;
-    text-align: center;
+}
+
+.post-body p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .post {
@@ -23,5 +31,7 @@
 }
 
 ::ng-deep .post:hover{
-    box-shadow: 5px 5px  #aaaaaa;
+    box-shadow: 0px 0px 5px  #ddd;
 }
+
+
