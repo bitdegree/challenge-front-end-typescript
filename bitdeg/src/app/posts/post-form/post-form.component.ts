@@ -75,7 +75,7 @@ export class PostFormComponent implements OnInit {
   };
 
   /**
-   * On edit mode @property editSaved is emited to a parent component, 
+   * On edit mode @property editSaved is emited to a parent component,
    * which would switch its mode to read view. This allows for easy edit
    * without navigating to a new page
    */

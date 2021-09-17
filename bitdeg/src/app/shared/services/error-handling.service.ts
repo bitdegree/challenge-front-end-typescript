@@ -43,7 +43,7 @@ export class ErrorHandlerService {
         this.errMsgs.next(errMsgs);
       } else if (error.status === 405) {
         //method not allowed (e.g useful for automatic form save ie. error would trigger update instead of create)
-        return throwError(error.error)
+        return throwError(error.error);
       } else {
         const message =
           error.error instanceof ErrorEvent

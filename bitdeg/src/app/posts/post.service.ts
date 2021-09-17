@@ -43,6 +43,6 @@ export class PostService {
   update(data: Post): Observable<Post> {
     return this.http
       .put<Post>(`${this.baseUrl}/${data.id}`, { data })
-      .pipe(catchError(this.handleError(`Update Post`, {} as Post)));;
+      .pipe(catchError(this.handleError(`Update Post`, {} as Post)));
   }
 }
