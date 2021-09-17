@@ -1,0 +1,27 @@
+.post-header{
+    font-size: x-large;
+    font-weight: bold;
+    transition: width 2s;
+    text-align: center;
+}
+
+.post-body {
+    overflow: hidden;
+    text-align: center;
+}
+
+.post {
+    border-style: solid;
+    border-width: thin;
+    margin:2%;
+    padding: 2%;
+    background-color: inherit;
+}
+
+::ng-deep .post-toggle:hover{
+    cursor: pointer;
+}
+
+::ng-deep .post:hover{
+    box-shadow: 5px 5px  #aaaaaa;
+}
