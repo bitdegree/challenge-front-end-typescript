@@ -43,8 +43,7 @@ export class PostDetailsComponent implements OnInit {
         const postId = unHashDetail(data.pId);
         const userId = unHashDetail(data.uId);
         this.getPost(+postId, +userId);
-      }
-      this.redirect();
+      } else this.redirect();
     });
   };
 

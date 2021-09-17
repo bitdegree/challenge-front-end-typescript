@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, of } from "rxjs";
+import { BehaviorSubject, Observable, of, throwError } from "rxjs";
 import { MessageService } from "./message.service";
 
 export type ErrorHandler = <T>(
@@ -30,6 +30,7 @@ export class ErrorHandlerService {
   ) {
     return (error: HttpErrorResponse): Observable<T> => {
       if (error.status === 422) {
+        //unprocessible entity / form errors
         const fieldError = error.error[`errors`];
         const errMsgs = [];
         if (fieldError instanceof Object) {
@@ -40,6 +41,9 @@ export class ErrorHandlerService {
           errMsgs.push({ desc: fieldError });
         }
         this.errMsgs.next(errMsgs);
+      } else if (error.status === 405) {
+        //method not allowed (e.g useful for automatic form save ie. error would trigger update instead of create)
+        return throwError(error.error)
       } else {
         const message =
           error.error instanceof ErrorEvent

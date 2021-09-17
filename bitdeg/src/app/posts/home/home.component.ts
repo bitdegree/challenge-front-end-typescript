@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { BlogPost, PageSearch, Post, User } from "@core/models";
 import { UntilDestroy } from "@ngneat/until-destroy";
 import { PostService } from "@posts/post.service";
@@ -17,10 +18,12 @@ export class HomeComponent implements OnInit {
   postsPageSearch: PageSearch<Post> = new PageSearch(new Post());
   usersPageSearch: PageSearch<User> = new PageSearch(new User());
   posts$: Observable<Array<BlogPost>>;
+  users: Array<User>;
   constructor(
-    private posts: PostService,
-    private users: UserService,
-    private photos: PhotoService,
+    private postSe: PostService,
+    private userSe: UserService,
+    private photoSe: PhotoService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -29,12 +32,14 @@ export class HomeComponent implements OnInit {
 
   getAllPosts = (): void => {
     this.posts$ = combineLatest([
-      this.posts.findAll(this.postsPageSearch),
-      this.users.findAll(this.usersPageSearch),
-      this.photos.find(),
+      this.postSe.findAll(this.postsPageSearch),
+      this.userSe.findAll(this.usersPageSearch),
+      this.photoSe.find(),
     ]).pipe(
       map(([posts, users, photo]) => {
         return posts.map((post) => {
+          /**Save users inorder to be used in the dropdown to select user when creating a post */
+          this.users = users;
           /**Find the author of this post and add it to the post payload, making it a @type BlogPost */
           const author = users.find((user) => user.id === post.userId);
           return {
@@ -51,5 +56,9 @@ export class HomeComponent implements OnInit {
         });
       }),
     );
+  };
+
+  toCreatePost = (uId: number): void => {
+    this.router.navigate([""], { state: { id: uId } });
   };
 }
