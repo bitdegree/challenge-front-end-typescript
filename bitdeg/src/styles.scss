@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import "theme.scss";
 @import "layout.scss";
 @import "bootstrap.scss";
+@import "theme.scss";
 
 @font-face {
   font-family: "Trueno";
@@ -9,3 +9,22 @@
 }
 
 $enable-negative-margins: true;
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: "Trueno";
+  padding: 0;
+  margin: 0;
+  &,
+  &.dark-theme {
+    background-color: $dark-page-color !important;
+    color: $dark-text-color !important;
+  }
+  &.light-theme {
+    background-color: $dark-page-color !important;
+    color: $dark-text-color !important;
+  }
+}
