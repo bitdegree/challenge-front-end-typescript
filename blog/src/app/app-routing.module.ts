@@ -8,6 +8,11 @@ const routes: Routes = [
     pathMatch:'full'
   },
   {
+    path:'post',
+    loadChildren: () => import('./pages/post/post-screen.module').then(m => m.PostScreenModule),
+    pathMatch:'full'
+  },
+  {
     path:'**',
     redirectTo:''
   },

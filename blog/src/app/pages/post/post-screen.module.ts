@@ -2,21 +2,21 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HomeScreenComponent } from '../home/screen/home-screen.component';
-import { PostCardComponent } from '../home/components/post-card/post-card.component';
+import { PostScreenComponent } from './screen/post-screen.component';
 @NgModule({
   declarations: [
-    HomeScreenComponent,
-    PostCardComponent
-    ],
+    
+    PostScreenComponent
+  ],
   imports: [
     RouterModule.forChild([{
         path: '',
         pathMatch: 'full',
-        component: HomeScreenComponent
+        component: PostScreenComponent
       }]),
     CommonModule
   ],
   providers: [
   ],
 })
-export class HomeModule { }
+export class PostScreenModule { }

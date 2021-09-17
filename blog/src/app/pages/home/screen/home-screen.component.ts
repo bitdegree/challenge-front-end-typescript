@@ -30,7 +30,7 @@ export class HomeScreenComponent implements OnInit {
   showMorePosts(howMany : number){
     this.ShownPostsCount += howMany;
     if(this.ShownPostsCount >= this.Posts.length )
-      this.ShownPostsCount = this.Posts.length -1
+      this.ShownPostsCount = this.Posts.length;
   }
 
   @HostListener("window:scroll", ["$event"])
