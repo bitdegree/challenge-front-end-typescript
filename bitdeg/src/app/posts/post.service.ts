@@ -20,7 +20,10 @@ export class PostService {
   }
 
   findAll(pageParams: PageSearch<Post>): Observable<Array<Post>> {
-    const params = new HttpParams().append("userId", pageParams.data.userId);
+    const params = pageParams.data.id ? new HttpParams().append(
+      "userId",
+      pageParams.data.filters.userId,
+    ) : null;
     return this.http
       .get<Array<Post>>(`${this.baseUrl}`, { params })
       .pipe(catchError(this.handleError(`Find Posts`, [])));

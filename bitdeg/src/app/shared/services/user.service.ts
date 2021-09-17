@@ -16,10 +16,12 @@ export class UserService {
     this.handleError = errorHandler.createErrorHandler();
   }
 
-  findAll(pageParams: PageSearch<User>): Observable<User> {
-    const params = new HttpParams().append("userId", pageParams.data.id);
+  findAll(pageParams: PageSearch<User>): Observable<Array<User>> {
+    const params = pageParams.data.id
+      ? new HttpParams().append("id", pageParams.data.id)
+      : null;
     return this.http
-      .get<User>(`${this.baseUrl}`)
-      .pipe(catchError(this.handleError(`Find photo`, {} as User)));
+      .get<Array<User>>(`${this.baseUrl}`, { params })
+      .pipe(catchError(this.handleError(`Find users`, [])));
   }
 }
