@@ -3,20 +3,37 @@ import { Injectable } from "@angular/core"
 import { Observable } from "rxjs"
 import { environment } from "src/environments/environment"
 import { Post } from "../models/post.model"
+import { catchError } from 'rxjs/operators';
+import { BaseService } from "./base.service"
 
 @Injectable({
-  providedIn: "root"
+    providedIn: "root"
 })
 
-export class PostService {
+export class PostService extends BaseService {
 
-    constructor(readonly httpClient : HttpClient){}
-
-    getPosts() : Observable<Post[]>{
-        return this.httpClient.get<Post[]>(environment.Endpoint.concat('posts')).pipe();
+    constructor(readonly httpClient: HttpClient) {
+        super()
     }
 
-    getPost(postid : number) : Observable<Post[]>{
-        return this.httpClient.get<Post[]>(environment.Endpoint.concat('posts/',postid.toString())).pipe();
+    getPosts(): Observable<Post[]> {
+        const url = environment.Endpoint.concat('posts');
+        return this.httpClient.get<Post[]>(environment.Endpoint.concat('posts'))
+            .pipe(
+                catchError(
+                    this.handleError<Post[]>('getPosts', [])
+                )
+            );
+    }
+
+    getPost(postid: number): Observable<Post> {
+        const url = environment.Endpoint.concat('posts/', postid.toString());
+        return this.httpClient.get<Post>(url).
+            pipe(
+                catchError(
+                    this.handleError<Post>('getPost', undefined)
+                )
+            );
     }
 }
+
