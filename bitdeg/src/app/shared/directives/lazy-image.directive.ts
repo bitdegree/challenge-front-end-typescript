@@ -4,16 +4,22 @@ import {
   HostBinding,
   HostListener,
   Input,
+  OnChanges,
+  OnInit,
 } from "@angular/core";
 import { generateRandomColor } from "@core/utils";
 
 @Directive({
   selector: "[bitdegLazyImage]",
 })
-export class LazyImageDirective {
+export class LazyImageDirective implements OnInit {
   @HostBinding("src") imageUrl: string;
   @Input() bitdegLazyImage: string = "";
   constructor(private el: ElementRef) {}
+
+  ngOnInit(): void {
+    this.lazyLoadImage();
+  }
 
   @HostListener("window:scroll", ["$event"]) lazyLoadImage(): void {
     this.isImageInView() && this.loadImage();

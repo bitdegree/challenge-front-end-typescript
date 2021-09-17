@@ -22,6 +22,12 @@ export class UserService {
       : null;
     return this.http
       .get<Array<User>>(`${this.baseUrl}`, { params })
-      .pipe(catchError(this.handleError(`Find users`, [])));
+      .pipe(catchError(this.handleError(`Find Users`, [])));
+  }
+
+  find(id: number): Observable<User> {
+    return this.http
+      .get<User>(`${this.baseUrl}/${id}`)
+      .pipe(catchError(this.handleError(`Read User`, {} as User)));
   }
 }
