@@ -18,7 +18,7 @@ export class PostService extends BaseService {
 
     getPosts(): Observable<Post[]> {
         const url = environment.Endpoint.concat('posts');
-        return this.httpClient.get<Post[]>(environment.Endpoint.concat('posts'))
+        return this.httpClient.get<Post[]>(url)
             .pipe(
                 catchError(
                     this.handleError<Post[]>('getPosts', [])
