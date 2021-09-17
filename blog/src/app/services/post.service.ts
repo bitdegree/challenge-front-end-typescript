@@ -16,4 +16,7 @@ export class PostService {
         return this.httpClient.get<Post[]>(environment.Endpoint.concat('posts')).pipe();
     }
 
+    getPost(postid : number) : Observable<Post[]>{
+        return this.httpClient.get<Post[]>(environment.Endpoint.concat('posts/',postid.toString())).pipe();
+    }
 }
