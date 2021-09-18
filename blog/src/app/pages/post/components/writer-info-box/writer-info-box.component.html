@@ -1,6 +1,6 @@
 <div class="blog-post-writer-info-box" *ngIf="BoxShow">
-    <div class="d-flex justify-content-start blog-post-writer-info-box-author">
-        <i class="bi bi-person-circle"></i>
+    <div class="d-flex justify-content-center blog-post-writer-info-box-author">
+        <i class="bi bi-person-circle writer-icon"></i>
         <p [innerText]="User.name" (click)="nameClicked()" class="blog-post-writer-info-box-name"></p>
     </div>
     <p [innerText]="User.email" class="blog-post-writer-info-email"></p>

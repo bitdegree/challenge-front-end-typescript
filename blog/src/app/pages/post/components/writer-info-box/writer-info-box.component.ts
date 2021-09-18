@@ -21,7 +21,7 @@ export class WriterInfoBoxComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize() {
-    if(window.innerWidth < 900)
+    if(window.innerWidth < 1000)
       this.BoxShow = false;
     else 
       this.BoxShow = true;

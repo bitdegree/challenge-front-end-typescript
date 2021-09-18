@@ -5,7 +5,6 @@
 
 .blog-post-writer-info-box-name{
     text-transform: capitalize;
-    padding-left: 2%;
 }
 
 .blog-post-writer-info-email{
@@ -26,4 +25,18 @@
 .blog-post-writer-info-box-author:hover{
     text-decoration: underline;
     cursor: pointer;
+}
+
+.blog-post-writer-info-box{
+    text-align: center;
+    border: 1px solid grey;
+    border-radius: 20%;
+    box-shadow: 10px 10px 10px 10px #ddd;
+}
+
+
+.writer-icon{
+    display: block;
+    padding-left: 15%;
+    padding-top: 10%;
 }
