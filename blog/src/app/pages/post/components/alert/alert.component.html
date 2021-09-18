@@ -1,0 +1,5 @@
+<div class="alert" *ngIf="Show" [@enterAnimationHorizontal]>
+    <div [class]=" AlertType == 1 ? 'alert alert-success' : 'alert alert-danger'" role="alert">
+        <p [innerText]="AlertMessage" style="text-align: center;"></p>
+      </div>
+</div>

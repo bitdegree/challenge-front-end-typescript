@@ -4,5 +4,7 @@
     </div>
     <app-post-body *ngIf="Post" [Post]="Post"></app-post-body>
     <app-comment-body *ngIf="Comments" [Comments]="Comments"></app-comment-body>
+    <app-comment-form *ngIf="Post" [PostID]="Post.id" (CommentSubmitted)="CommentSubmitted($event)"></app-comment-form>
 </div>
 <app-writer-info-box id='infoBox' *ngIf="User" [User]="User"></app-writer-info-box>
+<app-alert class="alert" [AlertType]="AlertType" [AlertMessage]="AlertMessage" [DisplayTime]="DisplayTime" ></app-alert>

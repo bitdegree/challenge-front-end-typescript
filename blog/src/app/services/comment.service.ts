@@ -25,5 +25,15 @@ export class CommentService extends BaseService {
             )
         );
     }
+
+    createPostComments(post : PostComment): Observable<PostComment> {
+        const url = environment.Endpoint.concat('comments');
+        return this.httpClient.post<PostComment>(url,post)
+        .pipe(
+            catchError(
+                this.handleError<PostComment>('getPostComments', undefined)
+            )
+        );
+    }
 }
 

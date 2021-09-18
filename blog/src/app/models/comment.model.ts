@@ -1,5 +1,5 @@
 export interface PostComment {
-    id: number,
+    id?: number,
     postId: number,
     name: string,
     email: string,

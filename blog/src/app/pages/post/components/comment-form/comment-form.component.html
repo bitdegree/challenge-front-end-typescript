@@ -1,0 +1,35 @@
+<div class="blog-post-comment-form card">
+
+    
+    <div class="d-flex justify-content-between">
+        <p class="submit-text">Comment This Post</p>
+        <button type="submit" class="btn btn-primary comment-form" (click)="sumbit()">Comment</button>
+    </div>
+
+
+    <input type="text" id="email" name="email" class="form-control comment-form" placeholder="Email" required [(ngModel)]="Email" #email='ngModel'>
+
+    <div *ngIf="email.invalid && SumbitClicked" class="alert">
+        <div *ngIf="email.errors?.required">
+            Email is required.
+        </div>
+    </div>
+
+    <input type="text" id="name" name="name" class="form-control comment-form" placeholder="Header" required [(ngModel)]="Name" #name='ngModel'>
+
+    <div *ngIf="name.invalid && SumbitClicked" class="alert">
+        <div *ngIf="name.errors?.required">
+            Header is required.
+        </div>
+    </div>
+
+    <textarea  type="text" id="body" name="body" class="form-control comment-form" placeholder="Body" required [(ngModel)]="Body" #body='ngModel'></textarea>
+
+    <div *ngIf="body.invalid && SumbitClicked" class="alert">
+        <div *ngIf="body.errors?.required">
+            Body is required.
+        </div>
+    </div>
+
+
+</div>

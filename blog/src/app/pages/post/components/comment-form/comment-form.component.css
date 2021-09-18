@@ -1,0 +1,21 @@
+.blog-post-comment-form{
+    margin-bottom: 10%;
+    padding : 5%;
+}
+
+.alert{
+    background-color: #fed3d3;
+    color: #820000;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .submit-text{
+      text-decoration: underline;
+      font-size: large;
+      font-weight: bold;
+  }
+
+  .comment-form{
+    margin-top: 4%;
+}

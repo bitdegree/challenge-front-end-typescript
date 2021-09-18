@@ -11,11 +11,11 @@ import { PostComment } from 'src/app/models/comment.model';
       'commentBodyToggle', [
         transition(':enter', [
           style({height:0}),
-          animate('300ms', style({ height:100}))
+          animate('150ms', style({ height:100}))
         ]),
         transition(':leave', [
           style({height:100}),
-          animate('300ms', style({height:0}))
+          animate('150ms', style({height:0}))
         ])
       ],
     ),
