@@ -13,6 +13,11 @@ const routes: Routes = [
     pathMatch:'full'
   },
   {
+    path:'user',
+    loadChildren: () => import('./pages/user/user-screen.module').then(m => m.UserScreenModule),
+    pathMatch:'full'
+  },
+  {
     path:'**',
     redirectTo:''
   },

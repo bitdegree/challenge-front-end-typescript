@@ -25,4 +25,8 @@ export class PostCardComponent implements OnInit {
     this.router.navigate(['/post', {postID : this.Post.id}]);
   }
 
+  authorClick(){
+    this.router.navigate(['/user', {userID : this.Post.userId}]);
+  }
+
 }

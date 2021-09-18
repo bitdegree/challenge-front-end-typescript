@@ -66,7 +66,6 @@ export class HomeScreenComponent implements OnInit {
   mergePostWithAuthors(){
     if(this.userService.Users != undefined && this.postService.Posts != undefined)
     this.BlogPosts = this.postService.Posts.map( item => Object.assign({}, this.userService.Users.filter(u => u.id == item.userId)[0],item));
-    console.log(this.BlogPosts);
   }
 
 

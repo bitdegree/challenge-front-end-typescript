@@ -34,7 +34,6 @@ export class CommentCardComponent implements OnInit {
   BodyToggleOn : string = "bi bi-arrow-up-circle-fill toggle"
 
   ngOnInit(): void {
-    console.log(this.Comment)
   }
 
   BodyToggleClick(){

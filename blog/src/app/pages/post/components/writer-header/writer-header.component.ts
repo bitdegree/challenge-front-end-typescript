@@ -21,7 +21,7 @@ export class WriterHeaderComponent implements OnInit {
   }
 
   nameClicked(){
-    this.router.navigate(['/user', {postID : this.User.id}]);
+    this.router.navigate(['/user', {userID : this.User.id}]);
   }
 
 }

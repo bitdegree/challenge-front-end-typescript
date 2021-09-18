@@ -1,6 +1,6 @@
 .blog-post-writer-info-box-author{
-    display: flex;
-    vertical-align: middle;
+    text-align: center;
+    padding: 10%;
 }
 
 .blog-post-writer-info-box-name{
@@ -28,6 +28,7 @@
 }
 
 .blog-post-writer-info-box{
+    display: block;
     text-align: center;
     border: 1px solid grey;
     border-radius: 20%;
@@ -37,6 +38,5 @@
 
 .writer-icon{
     display: block;
-    padding-left: 15%;
     padding-top: 10%;
 }
