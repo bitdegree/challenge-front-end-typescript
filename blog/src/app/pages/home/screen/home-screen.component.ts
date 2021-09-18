@@ -1,6 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/post.model';
+import { User } from 'src/app/models/user.model';
 import { PostService } from 'src/app/services/post.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home-screen',
@@ -9,14 +11,17 @@ import { PostService } from 'src/app/services/post.service';
 })
 export class HomeScreenComponent implements OnInit {
 
-  constructor(readonly postService: PostService) { }
+  constructor(readonly postService: PostService,
+              readonly userService: UserService) { }
 
   Posts !: Post[];
+  Users !: User[];
 
   ShownPostsCount = 10;
 
   ngOnInit(): void {
     this.getPosts();
+    this.getUsers();
   }
 
   getPosts() {
@@ -25,6 +30,13 @@ export class HomeScreenComponent implements OnInit {
         data => this.Posts = [...data]
           .sort((a, b) => a.id < b.id ? 1 : a.id > b.id ? -1 : 0)
       ); //I sort the data since I want my first element be to last created post
+  }
+
+  getUsers(){
+    this.userService.getUsers()
+      .subscribe(
+        data => this.Users = [...data]
+      ); 
   }
 
   showMorePosts(howMany : number){

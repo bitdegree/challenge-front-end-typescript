@@ -6,21 +6,7 @@ import { Post } from 'src/app/models/post.model';
 @Component({
   selector: 'app-post-card',
   templateUrl: './post-card.component.html',
-  styleUrls: ['./post-card.component.css'],
-  animations: [
-    trigger(
-      'cardToggleAnimation', [
-        transition(':enter', [
-          style({height:0}),
-          animate('300ms', style({ height:100}))
-        ]),
-        transition(':leave', [
-          style({height:100}),
-          animate('300ms', style({ height:0}))
-        ])
-      ],
-    ),
-  ]
+  styleUrls: ['./post-card.component.css']
 })
 export class PostCardComponent implements OnInit {
 
