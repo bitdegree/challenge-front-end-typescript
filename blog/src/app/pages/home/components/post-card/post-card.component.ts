@@ -1,7 +1,5 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Post } from 'src/app/models/post.model';
 
 @Component({
   selector: 'app-post-card',
@@ -10,7 +8,7 @@ import { Post } from 'src/app/models/post.model';
 })
 export class PostCardComponent implements OnInit {
 
-  @Input() Post !: Post;
+  @Input() Post !: any;
 
   constructor(readonly router : Router) { }
 

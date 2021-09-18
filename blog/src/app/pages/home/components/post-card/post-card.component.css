@@ -35,3 +35,18 @@
 }
 
 
+::ng-deep .post-header:hover{
+    text-decoration: underline;
+}
+
+::ng-deep .author:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+::ng-deep .author:hover {
+    text-decoration: underline;
+
+}
+
+
