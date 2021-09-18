@@ -1,6 +1,4 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { BlogPost, Post } from 'src/app/models/post.model';
-import { User } from 'src/app/models/user.model';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
 

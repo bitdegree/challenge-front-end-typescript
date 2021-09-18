@@ -16,7 +16,7 @@ export class PostService extends BaseService {
         super()
     }
 
-    Posts !: Post[];
+    Posts : Post[] = [];
 
     getPosts(): Observable<Post[]> {
         const url = environment.Endpoint.concat('posts');

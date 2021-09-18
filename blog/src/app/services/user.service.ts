@@ -17,6 +17,9 @@ export class UserService extends BaseService {
         super()
     }
 
+    Users !: User[];
+
+
     getUsers(): Observable<User[]> {
         const url = environment.Endpoint.concat('users');
         return this.httpClient.get<User[]>(url)
