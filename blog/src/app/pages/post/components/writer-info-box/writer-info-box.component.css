@@ -1,6 +1,8 @@
 .blog-post-writer-info-box-author{
     display: flex;
+    vertical-align: middle;
 }
+
 .blog-post-writer-info-box-name{
     text-transform: capitalize;
     padding-left: 2%;

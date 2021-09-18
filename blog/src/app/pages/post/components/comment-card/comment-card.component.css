@@ -1,0 +1,28 @@
+.blog-post-comment-card-header:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.blog-post-comment-card-header{
+    font-size: large;
+    font-weight: bold;
+}
+
+.blog-post-comment-card-body{
+    overflow: hidden;
+}
+
+.blog-post-comment-card {
+    padding : 1%;
+}
+
+.blog-post-comment-card:hover {
+    box-shadow: 5px 5px 5px  #ddd;
+}
+
+.blog-post-comment-card-email{
+    font-size: small;
+    color: grey;
+    vertical-align: text-top;
+}
+

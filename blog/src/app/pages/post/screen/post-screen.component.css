@@ -1,0 +1,11 @@
+.blog-post{
+    margin-top: 8%;
+    width: 50%;
+}
+
+
+#infoBox{
+    position: fixed;
+    left : 10%;
+    bottom: 65%;
+}

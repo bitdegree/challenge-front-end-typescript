@@ -26,6 +26,11 @@
     background-color: inherit;
 }
 
+.author{
+    text-transform: capitalize;
+    font-size: larger;
+}
+
 ::ng-deep .post-toggle:hover{
     cursor: pointer;
 }
@@ -44,9 +49,5 @@
     cursor: pointer;
 }
 
-::ng-deep .author:hover {
-    text-decoration: underline;
-
-}
 
 

@@ -29,5 +29,15 @@ export class UserService extends BaseService {
             )
         );
     }
+
+    getUser(userId:number): Observable<User> {
+        const url = environment.Endpoint.concat('users/',userId.toString());
+        return this.httpClient.get<User>(url)
+        .pipe(
+            catchError(
+                this.handleError<User>('getUsers', undefined)
+            )
+        );
+    }
 }
 

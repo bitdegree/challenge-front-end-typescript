@@ -1,0 +1,14 @@
+<div class="card">
+    <div class="blog-post-comment-card">
+        <div class="blog-post-comment-card-header d-flex justify-content-start" (click)="BodyToggleClick()">
+            <i [class]="!BodyToggle ? BodyToggleOff : BodyToggleOn"></i>
+            <p class="ml-auto" style="padding-left: 1%;" [innerText]="Comment.name"></p>
+        </div>
+        <div class="blog-post-comment-card-email" (click)="BodyToggleClick()">
+            <p [innerText]="Comment.email"></p>
+        </div>
+        <div class="blog-post-comment-card-body" *ngIf="BodyToggle" [@commentBodyToggle]>
+            <p [innerText]="Comment.body"></p>
+        </div>
+    </div>
+</div>

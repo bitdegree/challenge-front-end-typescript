@@ -1,1 +1,8 @@
-<p *ngIf="Post">{{Post.body}}</p>
+<div class="container blog-post">
+    <div id="header">
+        <app-writer-header *ngIf="User" [User]="User"></app-writer-header>
+    </div>
+    <app-post-body *ngIf="Post" [Post]="Post"></app-post-body>
+    <app-comment-body *ngIf="Comments" [Comments]="Comments"></app-comment-body>
+</div>
+<app-writer-info-box id='infoBox' *ngIf="User" [User]="User"></app-writer-info-box>

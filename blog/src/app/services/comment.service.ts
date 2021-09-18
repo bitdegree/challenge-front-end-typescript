@@ -4,6 +4,7 @@ import { Observable } from "rxjs"
 import { environment } from "src/environments/environment"
 import { catchError } from 'rxjs/operators';
 import { BaseService } from "./base.service"
+import { PostComment } from "../models/comment.model";
 
 @Injectable({
     providedIn: "root"
@@ -15,12 +16,12 @@ export class CommentService extends BaseService {
         super()
     }
 
-    getPostComments(postId : number): Observable<Comment[]> {
-        const url = environment.Endpoint.concat('comments?postId',postId.toString());
-        return this.httpClient.get<Comment[]>(url)
+    getPostComments(postId : number): Observable<PostComment[]> {
+        const url = environment.Endpoint.concat('comments?postId=',postId.toString());
+        return this.httpClient.get<PostComment[]>(url)
         .pipe(
             catchError(
-                this.handleError<Comment[]>('getPostComments', [])
+                this.handleError<PostComment[]>('getPostComments', [])
             )
         );
     }

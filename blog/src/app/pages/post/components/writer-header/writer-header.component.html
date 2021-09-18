@@ -1,8 +1,10 @@
-<div class="d-flex justify-content-start blog-post-author">
-    <i class="bi bi-person-circle"></i>
-    <p [innerText]="User.name" (click)="nameClicked()" class="blog-post-author-name"></p>
-</div>
-<div class="d-flex justify-content-between">
-    <p [innerText]="User.email" class="blog-post-email"></p>
-    <p [innerText]="User.website" (click)="websiteClicked()" class="blog-post-website"></p>
+<div class="blog-post-writer-header">
+    <div class="d-flex justify-content-start blog-post-author">
+        <i class="bi bi-person-circle"></i>
+        <p [innerText]="User.name" (click)="nameClicked()" class="blog-post-author-name"></p>
+    </div>
+    <div class="d-flex justify-content-between">
+        <p [innerText]="User.email" class="blog-post-email"></p>
+        <p [innerText]="User.website" (click)="websiteClicked()" class="blog-post-website"></p>
+    </div>
 </div>
