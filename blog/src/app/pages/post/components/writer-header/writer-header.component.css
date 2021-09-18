@@ -1,0 +1,24 @@
+.blog-post-author{
+    font-size: x-large;
+    display: flex;
+}
+.blog-post-author-name{
+    text-transform: capitalize;
+    padding-left: 1%;
+}
+
+.blog-post-email{
+    font-size: small;
+    color: grey;
+    vertical-align: text-top;
+}
+
+.blog-post-website:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.blog-post-author-name:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
