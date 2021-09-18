@@ -16,6 +16,8 @@ export class PostService extends BaseService {
         super()
     }
 
+    Posts !: Post[];
+
     getPosts(): Observable<Post[]> {
         const url = environment.Endpoint.concat('posts');
         return this.httpClient.get<Post[]>(url)
@@ -32,6 +34,16 @@ export class PostService extends BaseService {
             pipe(
                 catchError(
                     this.handleError<Post>('getPost', undefined)
+                )
+            );
+    }
+
+    getPostWithBoundry(start: number, end: number): Observable<Post[]> {
+        const url = environment.Endpoint.concat('posts?_start=',start.toString(),'&_end=',end.toString());
+        return this.httpClient.get<Post[]>(url).
+            pipe(
+                catchError(
+                    this.handleError<Post[]>('getPostWithBoundry', [])
                 )
             );
     }
