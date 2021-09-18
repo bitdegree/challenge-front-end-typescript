@@ -9,5 +9,4 @@ import { UntilDestroy } from "@ngneat/until-destroy";
 })
 export class HomeComponent implements OnInit {
   ngOnInit(): void {}
-  
 }

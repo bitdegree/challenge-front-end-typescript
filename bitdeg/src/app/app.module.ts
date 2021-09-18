@@ -15,7 +15,7 @@ import {
   HomeComponent,
   PostDetailsComponent,
   PostFormComponent,
-  PostListComponent
+  PostListComponent,
 } from "./index";
 
 @NgModule({
