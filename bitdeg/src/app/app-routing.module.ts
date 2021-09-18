@@ -15,6 +15,7 @@ const routes: Routes = [
       { path: "", component: PostListComponent },
       { path: "posts/:slug/:uId/:pId", component: PostDetailsComponent },
       { path: "create-post", component: PostFormComponent },
+      { path: "**", redirectTo: "", pathMatch: "full" },
     ],
   },
 ];

@@ -27,6 +27,7 @@ $dark-theme: mat.define-dark-theme((
 // Apply the dark theme by default
 @include mat.core-theme($dark-theme);
 @include mat.button-theme($dark-theme);
+@include mat.tooltip-theme($dark-theme);
 
 // Apply the light theme only when the `.light-theme` CSS class is applied
 // to an ancestor element of the components (such as `body`).
@@ -34,5 +35,5 @@ $dark-theme: mat.define-dark-theme((
  @include mat.core-color($light-theme);
  @include mat.button-color($light-theme);
 //  @include mat.core-theme($light-theme);
-//  @include mat.button-theme($light-theme);
+ @include mat.tooltip-color($light-theme);
 }

@@ -44,11 +44,15 @@ header {
 
 a {
   text-decoration: none;
+  color: currentColor;
 }
 
 //UTILITIES//
 .text-color {
   color: $text-color;
+}
+.text-mono {
+  color: $text-monochrome;
 }
 
 .pill-button {

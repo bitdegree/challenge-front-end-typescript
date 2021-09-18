@@ -38,10 +38,10 @@ export class PostDetailsComponent implements OnInit {
    * If no post id in route, redirect user to home
    */
   getRequestParams = (): void => {
-    this.route.params.subscribe((data) => {
+    this.route.paramMap.subscribe((data) => {
       if (!isObjectEmpty(data)) {
-        const postId = unHashDetail(data.pId);
-        const userId = unHashDetail(data.uId);
+        const postId = unHashDetail(data.get("pId"));
+        const userId = unHashDetail(data.get("uId"));
         this.getPost(+postId, +userId);
       } else this.redirect();
     });
@@ -72,7 +72,7 @@ export class PostDetailsComponent implements OnInit {
           map((post) => (this.post = post)),
         )
         .subscribe();
-    }
+    } else this.post = state[`post`];
   };
 
   redirect = (): void => {

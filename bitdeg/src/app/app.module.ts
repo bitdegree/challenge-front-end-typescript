@@ -4,14 +4,15 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
 
 import { HttpInterceptorProviders } from "@core/interceptors";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { SharedModule } from "@shared/shared.module";
 
-import { AppComponent } from "./app.component";
 import {
+  AppComponent,
   HomeComponent,
   PostDetailsComponent,
   PostFormComponent,
@@ -32,6 +33,7 @@ import {
     SharedModule,
     FormsModule,
     MatButtonModule,
+    MatIconModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,

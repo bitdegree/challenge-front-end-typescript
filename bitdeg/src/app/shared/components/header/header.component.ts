@@ -6,9 +6,13 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent implements OnInit {
+
+  darkMode: boolean;
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.darkMode = this.check();
+  }
 
   test() {
     const body = document.querySelector("body");
@@ -17,5 +21,10 @@ export class HeaderComponent implements OnInit {
       : body.classList.contains("dark-theme")
       ? body.classList.replace("dark-theme", "light-theme")
       : body.classList.add("dark-theme");
+    this.darkMode = this.check();
+  }
+
+  check(): boolean {
+   return document.querySelector("body").classList.contains("dark-theme");
   }
 }
