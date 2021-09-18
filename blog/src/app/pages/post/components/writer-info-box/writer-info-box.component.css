@@ -1,0 +1,27 @@
+.blog-post-writer-info-box-author{
+    display: flex;
+}
+.blog-post-writer-info-box-name{
+    text-transform: capitalize;
+    padding-left: 2%;
+}
+
+.blog-post-writer-info-email{
+    font-size: small;
+    color: grey;
+    vertical-align: text-top;
+}
+
+.blog-post-writer-info-website{
+    font-size: small;
+}
+
+.blog-post-writer-info-website:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.blog-post-writer-info-box-author:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
