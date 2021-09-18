@@ -18,13 +18,41 @@ body {
   font-family: "Trueno";
   padding: 0;
   margin: 0;
-  &,
+  font-size: 0.875em;
   &.dark-theme {
     background-color: $dark-page-color !important;
     color: $dark-text-color !important;
+    header {
+      background-color: $dark-page-color;
+    }
   }
   &.light-theme {
-    background-color: $dark-page-color !important;
-    color: $dark-text-color !important;
+    background-color: $light-page-color !important;
+    color: $light-text-color !important;
+    header {
+      background-color: $light-page-color;
+    }
   }
 }
+
+header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+a {
+  text-decoration: none;
+}
+
+//UTILITIES//
+.text-color {
+  color: $text-color;
+}
+
+.pill-button {
+  border-radius: 30px !important;
+}
+///
+

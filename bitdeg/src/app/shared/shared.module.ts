@@ -1,9 +1,12 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { LazyImageDirective } from "./directives/lazy-image.directive";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
+import { LazyImageDirective, HeaderComponent, FooterComponent } from "./index";
 
 @NgModule({
-  declarations: [LazyImageDirective],
-  imports: [CommonModule],
+  declarations: [LazyImageDirective, HeaderComponent, FooterComponent],
+  imports: [CommonModule, MatIconModule, MatButtonModule],
+  exports: [LazyImageDirective, HeaderComponent, FooterComponent],
 })
 export class SharedModule {}

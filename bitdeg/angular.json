@@ -31,8 +31,8 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "src/styles.scss",
-              "src/assets/css/material-theme.scss"
+              "src/assets/css/material-theme.scss",
+              "src/styles.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

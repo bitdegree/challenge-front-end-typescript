@@ -1,0 +1,24 @@
+@import "layout.scss";
+
+.image-placeholder {
+  height: 20vh;
+  width: 100%;
+}
+
+.img-bg {
+  height: 50px;
+  width: 50px;
+  min-width: 50px;
+}
+
+.pill-button {
+  position: sticky !important;
+  top: 1rem;
+  z-index: 1500;
+}
+
+@media only screen and (min-width: $layout-breakpoint-large) {
+  .image-placeholder {
+    height: 40vh;
+  }
+};
