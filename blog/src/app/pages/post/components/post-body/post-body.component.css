@@ -1,0 +1,9 @@
+.blog-post-body-title{
+    font-size: xx-large;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.blog-post-body-content{
+    font-size: large;
+}
