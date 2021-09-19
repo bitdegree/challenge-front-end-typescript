@@ -1,25 +1,26 @@
-<div class="d-flex justify-content-between align-items-center mb-3">
+<div class="d-flex justify-content-between align-items-center mb-3" *ngIf="!post">
     <a [routerLink]="['']" role="button" mat-icon-button>
         <mat-icon>arrow_back_ios</mat-icon>
     </a>
 </div>
+<div class="d-flex justify-content-center flex-column mx-auto w-lg-50">
+    <h6 class="h6 text-mono mb-3">{{!editMode ? 'Create a post':'Edit Post'}}</h6>
 
-<h6 class="h6 text-mono mb-3">{{!editMode ? 'Create a post':'Edit Post'}}</h6>
+    <form [formGroup]="postForm" class="d-flex flex-column">
+        <mat-form-field appearance="standard">
+            <mat-label>Post Title*</mat-label>
+            <input type="text" matInput placeholder="Ex. 10 Reasons Why I Love Coding" formControlName="title">
+        </mat-form-field>
 
-<form [formGroup]="postForm" class="d-flex justify-content-center flex-column mx-auto w-lg-50">
-    <mat-form-field appearance="standard">
-        <mat-label>Post Title*</mat-label>
-        <input type="text" matInput placeholder="Ex. 10 Reasons Why I Love Coding" formControlName="title">
-    </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>Post Body*</mat-label>
+            <textarea matInput placeholder="Type in your blog post..." rows="10" cdkTextareaAutosize
+                formControlName="body"></textarea>
+        </mat-form-field>
 
-    <mat-form-field appearance="standard">
-        <mat-label>Post Body*</mat-label>
-        <textarea matInput placeholder="Type in your blog post..." rows="10" cdkTextareaAutosize
-            formControlName="body"></textarea>
-    </mat-form-field>
-
-    <div class="d-flex justify-content-end">
-        <small class="text-muted flex-grow-1" *ngIf="savedAt">Saved at {{savedAt|date:"shortTime"}}</small>
-        <button type="button" mat-flat-button color="accent" class="flex-shrink-1" (click)="save()">Post</button>
-    </div>
-</form>
+        <div class="d-flex justify-content-end">
+            <small class="text-muted flex-grow-1" *ngIf="savedAt">Saved at {{savedAt|date:"shortTime"}}</small>
+            <button type="button" mat-flat-button color="accent" class="flex-shrink-1" (click)="save()">Post</button>
+        </div>
+    </form>
+</div>

@@ -1,7 +1,7 @@
 import { Location } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { BlogPost } from "@core/models";
+import { BlogPost, Post } from "@core/models";
 import { isObjectEmpty, unHashDetail } from "@core/utils";
 import { UntilDestroy } from "@ngneat/until-destroy";
 import { PostService } from "@posts/post.service";
@@ -73,6 +73,12 @@ export class PostDetailsComponent implements OnInit {
         )
         .subscribe();
     } else this.post = state[`post`];
+  };
+
+  onEditSaved = ($event: Post): void=> {
+    this.post.title = $event.title;
+    this.post.body = $event.body;
+    this.editMode = false;
   };
 
   redirect = (): void => {

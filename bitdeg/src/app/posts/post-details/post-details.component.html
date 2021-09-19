@@ -2,72 +2,55 @@
     <a [routerLink]="['']" role="button" mat-icon-button>
         <mat-icon>arrow_back_ios</mat-icon>
     </a>
-    <button mat-icon-button>
-        <mat-icon>mode_edit</mat-icon>
+    <button mat-icon-button (click)="editMode = !editMode">
+        <mat-icon>{{!editMode?'mode_edit':'visibility'}}</mat-icon>
     </button>
 </div>
 
-<h6 class="h6 text-mono mb-3">Company name</h6>
+<ng-container *ngIf="!editMode; else editForm">
+    <h6 class="h6 text-mono mb-3">{{post?.user.company.name|titlecase}}</h6>
 
-<article>
-    <h1 class="h1">{{'TITLE BLOCK OF THE POST SHOULD WRAP'|titlecase}}</h1>
-    <div class="d-flex align-items-center justify-content-between w-75 w-md-50 w-lg-25">
-        <small class="text-color">Authored by John Gregory</small>
-        <a href="javascript:void(0)" mat-mini-fab color="accent">
-            <mat-icon>link</mat-icon>
-        </a>
-        <a href="javascript:void(0)" mat-mini-fab color="warn">
-            <mat-icon>email</mat-icon>
-        </a>
-    </div>
-
-    <section class="banner mt-4">
-        <img src="https://via.placeholder.com/600/d0d147" class="img-fluid w-100 h-100">
-    </section>
-
-    <section class="content mt-3 text-wrap">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore odit quo dignissimos amet quis quibusdam,
-        nobis quaerat libero, ipsa quisquam quam illo veniam ducimus eos soluta cupiditate ea in harum.
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore odit quo dignissimos amet quis quibusdam,
-        nobis quaerat libero, ipsa quisquam quam illo veniam ducimus eos soluta cupiditate ea in harum.
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore odit quo dignissimos amet quis quibusdam,
-        nobis quaerat libero, ipsa quisquam quam illo veniam ducimus eos soluta cupiditate ea in harum.
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore odit quo dignissimos amet quis quibusdam,
-        nobis quaerat libero, ipsa quisquam quam illo veniam ducimus eos soluta cupiditate ea in harum.
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore odit quo dignissimos amet quis quibusdam,
-        nobis quaerat libero, ipsa quisquam quam illo veniam ducimus eos soluta cupiditate ea in harum.
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore odit quo dignissimos amet quis quibusdam,
-        nobis quaerat libero, ipsa quisquam quam illo veniam ducimus eos soluta cupiditate ea in harum.
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore odit quo dignissimos amet quis quibusdam,
-        nobis quaerat libero, ipsa quisquam quam illo veniam ducimus eos soluta cupiditate ea in harum.
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore odit quo dignissimos amet quis quibusdam,
-        nobis quaerat libero, ipsa quisquam quam illo veniam ducimus eos soluta cupiditate ea in harum.
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore odit quo dignissimos amet quis quibusdam,
-        nobis quaerat libero, ipsa quisquam quam illo veniam ducimus eos soluta cupiditate ea in harum.
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore odit quo dignissimos amet quis quibusdam,
-        nobis quaerat libero, ipsa quisquam quam illo veniam ducimus eos soluta cupiditate ea in harum.
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore odit quo dignissimos amet quis quibusdam,
-        nobis quaerat libero, ipsa quisquam quam illo veniam ducimus eos soluta cupiditate ea in harum.
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore odit quo dignissimos amet quis quibusdam,
-        nobis quaerat libero, ipsa quisquam quam illo veniam ducimus eos soluta cupiditate ea in harum.
-    </section>
-    <div class="d-flex justify-content-end">
-        <div class="d-flex justify-content-between mt-1 mt-lg-2">
-            <div class="rounded-circle img-bg me-2">
-                <img src="https://via.placeholder.com/50/d0d147" class="rounded-circle img-fluid w-100 h-100">
-            </div>
-            <div class="d-flex flex-column">
-                <span class="text-color">John Gregory</span>
-                <span class="text-mono">Company name</span>
-            </div>
-            <span>
-                <a href="javascript:void(0)" mat-mini-fab color="accent" class="me-1">
-                    <mat-icon>link</mat-icon>
-                </a>
-                <a href="javascript:void(0)" mat-mini-fab color="warn">
-                    <mat-icon>email</mat-icon>
-                </a>
-            </span>
+    <article>
+        <h1 class="h1">{{post?.title|titlecase}}</h1>
+        <div class="d-flex align-items-center justify-content-between w-75 w-md-50 w-lg-25">
+            <small class="text-color">Authored by {{post?.user.name|titlecase}}</small>
+            <a [href]="'http://'+post?.user.website" target="_blank" mat-mini-fab color="accent">
+                <mat-icon>link</mat-icon>
+            </a>
+            <a [href]="'mailto:'+post?.user.email" mat-mini-fab color="warn">
+                <mat-icon>email</mat-icon>
+            </a>
         </div>
-    </div>
-</article>
+
+        <section class="banner mt-4">
+            <img [src]="post?.images.original" class="img-fluid w-100 h-100">
+        </section>
+
+        <section class="content mt-3 text-wrap" [innerText]="post?.body"></section>
+        <div class="d-flex justify-content-end">
+            <div class="d-flex justify-content-between mt-1 mt-lg-2">
+                <div class="rounded-circle img-bg me-2">
+                    <img [src]="post?.images.thumbnail" class="rounded-circle img-fluid w-100 h-100">
+                </div>
+                <div class="d-flex flex-column">
+                    <span class="text-color">{{post?.user.name|titlecase}}</span>
+                    <span class="text-mono">{{post?.user.company.name|titlecase}}</span>
+                    <span class="text-success">{{post?.user.address.street}}, {{post?.user.address.city}}</span>
+                </div>
+                <span>
+                    <a href="javascript:void(0)" mat-mini-fab color="accent" class="me-1">
+                        <mat-icon>link</mat-icon>
+                    </a>
+                    <a href="javascript:void(0)" mat-mini-fab color="warn">
+                        <mat-icon>email</mat-icon>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </article>
+</ng-container>
+
+<!-- Edit form is used here as opposed to routing to give user a seamless transition from viewing details to making quick edits and back -->
+<ng-template #editForm>
+    <bitdeg-post-form [post]="post" (editSaved)="onEditSaved($event)"></bitdeg-post-form>
+</ng-template>

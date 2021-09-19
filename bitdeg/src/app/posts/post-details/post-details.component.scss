@@ -7,6 +7,18 @@
   width: 100%;
 }
 
+.img-bg {
+  height: 60px;
+  width: 60px;
+  min-width: 60px;
+  @at-root {
+    .img-bg,
+    .image-placeholder {
+      background-color: $text-color;
+    }
+  }
+}
+
 @media (min-width: $layout-breakpoint-large) {
   .banner {
     height: 300px;

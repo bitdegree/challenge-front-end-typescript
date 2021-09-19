@@ -7,7 +7,7 @@ import {
   ErrorHandlerService,
 } from "@shared/services/error-handling.service";
 import { Observable } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { catchError, map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -36,13 +36,21 @@ export class PostService {
 
   create(data: Post): Observable<Post> {
     return this.http
-      .post<Post>(`${this.baseUrl}`, { data })
-      .pipe(catchError(this.handleError(`Create Post`, {} as Post)));
+      .post<{ data: Post; id: number }>(`${this.baseUrl}`, { data })
+      .pipe(
+        map((resp) => resp[`data`] as Post),
+        catchError(this.handleError(`Create Post`, {} as Post)),
+      );
   }
 
   update(data: Post): Observable<Post> {
     return this.http
-      .put<Post>(`${this.baseUrl}/${data.userId}`, { data })//using userId  to prevent undefined as post is not saved actually by api
-      .pipe(catchError(this.handleError(`Update Post`, {} as Post)));
+      .put<{ data: Post; id: number }>(`${this.baseUrl}/${data.userId}`, {
+        data,
+      }) //using userId  to prevent undefined as post is not saved actually by api
+      .pipe(
+        map((resp) => resp[`data`] as Post),
+        catchError(this.handleError(`Update Post`, {} as Post)),
+      );
   }
 }

@@ -18,7 +18,7 @@ export class PostFormComponent implements OnInit {
   postForm: FormGroup;
   savedAt: number;
   @Input() post: Post;
-  @Output() editSaved = new EventEmitter<boolean>();
+  @Output() editSaved = new EventEmitter<Post>();
   editMode: boolean;
   userId: number; //signed in user id
   constructor(
@@ -66,7 +66,7 @@ export class PostFormComponent implements OnInit {
         delay(5000),
         exhaustMap((post, index) => {
           if (this.isFormValid()) {
-            return index > 1
+            return index > 1 || this.editMode
               ? this.posts.update(post)
               : this.posts.create(post);
           }
@@ -95,7 +95,7 @@ export class PostFormComponent implements OnInit {
       req.pipe(exhaustMap((resp) => of(resp))).subscribe((post) => {
         this.post = post;
         this.savedAt = Date.now();
-        if (this.editMode) this.editSaved.emit(true);
+        if (this.editMode) this.editSaved.emit(this.post);
       });
     }
   };

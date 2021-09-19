@@ -17,6 +17,7 @@ import { Router } from "@angular/router";
  * This component mimics an authentication logic, providing user
  * with a list of available users to choose from in-order
  * to be authenticated, as api does not support creating a new user
+ * and this would not be done in a real world situation
  */
 export class SigninComponent implements OnInit {
   availableUsers: Observable<Array<User>>;
