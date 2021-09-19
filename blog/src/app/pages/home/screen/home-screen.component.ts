@@ -1,4 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { SubscriptionLike } from 'rxjs';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -7,12 +8,15 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './home-screen.component.html',
   styleUrls: ['./home-screen.component.css']
 })
-export class HomeScreenComponent implements OnInit {
+export class HomeScreenComponent implements OnInit, OnDestroy {
+
+  subscribes: SubscriptionLike[] = [];
 
   constructor(readonly postService: PostService,
     readonly userService: UserService) { }
 
-  BlogPosts : any[] = [];
+
+  BlogPosts: any[] = [];
 
   ShownPostsCount = 0;
   triggerMorePostsOnce = false;
@@ -22,8 +26,14 @@ export class HomeScreenComponent implements OnInit {
     this.showMorePosts(10);
   }
 
+  ngOnDestroy(): void {
+    while(this.subscribes.length > 0) {
+      this.subscribes.pop()?.unsubscribe();
+    }
+  }
+
   getPosts(start: number, end: number) {
-    this.postService.getPostWithBoundry(start, end)
+    const sub = this.postService.getPostWithBoundry(start, end)
       .subscribe(
         data => {
           this.postService.Posts = this.postService.Posts.concat(...data);
@@ -31,21 +41,24 @@ export class HomeScreenComponent implements OnInit {
           this.mergePostWithAuthors();
         }
       );
+    this.subscribes.push(sub);
   }
 
   getUsers() {
-    if(this.userService.Users == undefined)
-    this.userService.getUsers()
-      .subscribe(
-        data => {
-          this.userService.Users = [...data];
-          this.mergePostWithAuthors();
-        }
-      );
+    if (this.userService.Users == undefined) {
+      let sub = this.userService.getUsers()
+        .subscribe(
+          data => {
+            this.userService.Users = [...data];
+            this.mergePostWithAuthors();
+          }
+        );
+      this.subscribes.push(sub);
+    }
   }
 
   showMorePosts(howMany: number) {
-    if(this.ShownPostsCount >= this.postService.Posts.length) {
+    if (this.ShownPostsCount >= this.postService.Posts.length) {
       this.getPosts(this.ShownPostsCount, this.ShownPostsCount + howMany);
     }
     else {
@@ -63,9 +76,9 @@ export class HomeScreenComponent implements OnInit {
     }
   }
 
-  mergePostWithAuthors(){
-    if(this.userService.Users != undefined && this.postService.Posts != undefined)
-    this.BlogPosts = this.postService.Posts.map( item => Object.assign({}, this.userService.Users.filter(u => u.id == item.userId)[0],item));
+  mergePostWithAuthors() {
+    if (this.userService.Users != undefined && this.postService.Posts != undefined)
+      this.BlogPosts = this.postService.Posts.map(item => Object.assign({}, this.userService.Users.filter(u => u.id == item.userId)[0], item));
   }
 
 

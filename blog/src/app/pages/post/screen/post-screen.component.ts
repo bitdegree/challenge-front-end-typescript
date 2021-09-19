@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SubscriptionLike } from 'rxjs';
 import { PostComment } from 'src/app/models/comment.model';
 import { Post } from 'src/app/models/post.model';
 import { User } from 'src/app/models/user.model';
@@ -12,13 +13,16 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './post-screen.component.html',
   styleUrls: ['./post-screen.component.css'],
 })
-export class PostScreenComponent implements OnInit {
+export class PostScreenComponent implements OnInit,OnDestroy {
+  
+  subscribes: SubscriptionLike[] = [];
 
   constructor(private activatedRoute: ActivatedRoute,
     readonly router: Router,
     readonly postService: PostService,
     readonly userService: UserService,
     readonly commentService: CommentService) { }
+
 
   Post !: Post;
   Comments !: PostComment[];
@@ -44,13 +48,14 @@ export class PostScreenComponent implements OnInit {
       this.findUser(this.Post.userId);
     }
     else {
-      this.postService.getPost(postID).subscribe(data => {
+      const sub = this.postService.getPost(postID).subscribe(data => {
         if (data == undefined)
           this.router.navigateByUrl('');
         else
           this.Post = data;
         this.findUser(data.userId)
       })
+      this.subscribes.push(sub);
     }
   }
 
@@ -63,16 +68,16 @@ export class PostScreenComponent implements OnInit {
       this.User = this.userService.Users.filter(i => i.id == userID)[0];
     }
     else {
-      this.userService.getUser(userID).subscribe(data => {
+      const sub = this.userService.getUser(userID).subscribe(data => {
         this.User = data;
       })
+      this.subscribes.push(sub);
     }
   }
 
   CommentSubmitted(e: PostComment) {
     this.DisplayTime = 0;
-    const _this = this;
-    this.commentService.createPostComments(e).subscribe(data => {
+    const sub = this.commentService.createPostComments(e).subscribe(data => {
       if (data) {
         this.Comments.push(e)
         this.AlertType = 1;
@@ -86,6 +91,13 @@ export class PostScreenComponent implements OnInit {
       }
     }
     );
+    this.subscribes.push(sub);
+  }
+
+  ngOnDestroy(): void {
+    while(this.subscribes.length > 0) {
+      this.subscribes.pop()?.unsubscribe();
+    }
   }
 
 

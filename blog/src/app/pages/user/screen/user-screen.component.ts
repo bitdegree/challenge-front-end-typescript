@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SubscriptionLike } from 'rxjs';
 import { Post } from 'src/app/models/post.model';
 import { User } from 'src/app/models/user.model';
 import { PostService } from 'src/app/services/post.service';
@@ -10,11 +11,15 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './user-screen.component.html',
   styleUrls: ['./user-screen.component.css']
 })
-export class UserScreenComponent implements OnInit {
+export class UserScreenComponent implements OnInit,OnDestroy {
+
+  subscribes: SubscriptionLike[] = [];
+
 
   constructor(readonly activatedRoute : ActivatedRoute,
               readonly userService : UserService,
               readonly postService : PostService) { }
+
 
   User !: User;
   UserPosts !: Post[];
@@ -33,16 +38,24 @@ export class UserScreenComponent implements OnInit {
       this.User = this.userService.Users.filter(i => i.id == userID)[0];
     }
     else {
-      this.userService.getUser(userID).subscribe(data => {
+      const sub = this.userService.getUser(userID).subscribe(data => {
         this.User = data;
     })
+    this.subscribes.push(sub);
     }
   }
 
   getLatestUserPosts(userID:number,start:number,end:number){
-    this.postService.getPostsOnlyOneUserWithBoundry(userID,start,end)
+    const sub = this.postService.getPostsOnlyOneUserWithBoundry(userID,start,end)
     .subscribe(data => this.UserPosts = [...data]
       .sort((a, b) => a.id < b.id ? 1 : a.id > b.id ? -1 : 0)); //I ordered the posts because bigger id means latest created among posts.
+    this.subscribes.push(sub);
+  }
+
+  ngOnDestroy(): void {
+    while(this.subscribes.length > 0) {
+      this.subscribes.pop()?.unsubscribe();
+    }
   }
 
 }

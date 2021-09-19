@@ -18,6 +18,11 @@ const routes: Routes = [
     pathMatch:'full'
   },
   {
+    path:'login',
+    loadChildren: () => import('./pages/login/login-screen.module').then(m => m.LoginScreenModule),
+    pathMatch:'full'
+  },
+  {
     path:'**',
     redirectTo:''
   },
