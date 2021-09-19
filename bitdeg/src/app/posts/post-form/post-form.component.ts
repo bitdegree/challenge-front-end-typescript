@@ -5,8 +5,8 @@ import { Post } from "@core/models";
 import { UntilDestroy } from "@ngneat/until-destroy";
 import { PostService } from "@posts/post.service";
 import { AuthService } from "@shared/services/auth.service";
-import { of } from "rxjs";
-import { concatMap, delay, exhaustMap, tap } from "rxjs/operators";
+import { EMPTY, of } from "rxjs";
+import { delay, exhaustMap, tap } from "rxjs/operators";
 
 @UntilDestroy({ checkProperties: true })
 @Component({
@@ -37,14 +37,18 @@ export class PostFormComponent implements OnInit {
     if (this.userId) {
       this.editMode = this.post && true;
       this.initForm();
+      this.autoSave();
     } else this.redirect();
   };
 
   initForm = (): void => {
     this.postForm = this.fb.group({
       title: [this.post?.title, [Validators.required]],
-      body: [this.post?.body, [Validators.required]],
-      userId: [this.post?.body ?? this.userId, [Validators.required]],
+      body: [
+        this.post?.body ?? " ",
+        [Validators.required],
+      ] /**Whitespace to avoid sending null during autosave */,
+      userId: [this.post?.userId ?? this.userId, [Validators.required]],
     });
   };
 
@@ -60,11 +64,15 @@ export class PostFormComponent implements OnInit {
     this.postForm.valueChanges
       .pipe(
         delay(5000),
-        concatMap((post) => this.isFormValid() && this.posts.create(post)),
-        tap({
-          //any error the error handler allows to reach this point is a 405 which means post already created
-          error: (err) => (this.editMode = true),
+        exhaustMap((post, index) => {
+          if (this.isFormValid()) {
+            return index > 1
+              ? this.posts.update(post)
+              : this.posts.create(post);
+          }
+          return EMPTY;
         }),
+        tap(() => !this.editMode && (this.editMode = true),),
       )
       .subscribe((resp) => {
         if (resp) this.savedAt = Date.now();

@@ -42,7 +42,7 @@ export class PostService {
 
   update(data: Post): Observable<Post> {
     return this.http
-      .put<Post>(`${this.baseUrl}/${data.id}`, { data })
+      .put<Post>(`${this.baseUrl}/${data.userId}`, { data })//using userId  to prevent undefined as post is not saved actually by api
       .pipe(catchError(this.handleError(`Update Post`, {} as Post)));
   }
 }
