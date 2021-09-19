@@ -3,12 +3,28 @@
         <h2 class="h2">Bitdeg</h2>
         <mat-icon color="primary">rss_feed</mat-icon>
     </div>
-    <div class="d-flex">
+    <div class="d-flex align-items-center">
         <button mat-icon-button (click)="test()">
             <mat-icon color="primary">{{darkMode?'light_mode':'dark_mode'}}</mat-icon>
         </button>
-        <button mat-icon-button>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon color="primary">account_circle</mat-icon>
         </button>
+        <span class="d-none d-md-flex" *ngIf="user$|async as user;">{{user.name|titlecase}}</span>
     </div>
 </header>
+
+<mat-menu #menu="matMenu">
+    <ng-container *ngIf="user$|async as user; else loginTemplate">
+        <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Log Out</span>
+        </button>
+    </ng-container>
+</mat-menu>
+<ng-template #loginTemplate>
+    <button mat-menu-item (click)="openAuthDialog()">
+        <mat-icon>login</mat-icon>
+        <span>Log In</span>
+    </button>
+</ng-template>

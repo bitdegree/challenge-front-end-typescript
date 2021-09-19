@@ -7,7 +7,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
-import { MatMenuModule } from "@angular/material/menu";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatSelectModule } from "@angular/material/select";
 
 import { HttpInterceptorProviders } from "@core/interceptors";
 
@@ -21,6 +22,7 @@ import {
   PostFormComponent,
   PostListComponent,
 } from "./index";
+import { SigninComponent } from './auth/signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import {
     PostDetailsComponent,
     PostFormComponent,
     PostListComponent,
+    SigninComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import {
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    MatMenuModule,
+    MatSelectModule,
+    MatDialogModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,

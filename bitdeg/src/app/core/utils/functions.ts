@@ -9,9 +9,20 @@ const hashDetail = (arg: string): string => btoa(arg);
 
 const unHashDetail = (arg: string): string => atob(arg);
 
+const hyphenIze = (arg: string): string => arg.split(" ").join("-");
+
 const isObjectEmpty = (arg: Object): boolean =>
   !arg || Object.keys(arg).length === 0;
 
-const hyphenIze = (arg: string): string => arg.split(" ").join("-");
+const isNullOrUndefined = <T extends string | number | object>(
+  arg: T,
+): boolean => arg === null || arg === undefined || arg === "";
 
-export { generateRandomColor, hashDetail, unHashDetail, isObjectEmpty, hyphenIze };
+export {
+  generateRandomColor,
+  hashDetail,
+  unHashDetail,
+  isObjectEmpty,
+  hyphenIze,
+  isNullOrUndefined
+};

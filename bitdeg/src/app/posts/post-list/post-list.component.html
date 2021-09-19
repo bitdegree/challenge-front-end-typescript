@@ -1,5 +1,5 @@
 <h4 class="h4 text-color mb-5">Write and Connect.</h4>
-<button mat-flat-button color="primary" class="pill-button" [matMenuTriggerFor]="menu">Create post</button>
+<button mat-flat-button color="primary" class="pill-button" (click)="toCreatePost()">Create post</button>
 
 <section class="row mt-3">
     <ng-container *ngFor="let post of posts$|async">
@@ -21,10 +21,3 @@
         </a>
     </ng-container>
 </section>
-
-
-<mat-menu #menu="matMenu">
-    <button mat-menu-item *ngFor="let user of users">
-        <span>{{user.name}}</span>
-    </button>
-</mat-menu>

@@ -19,7 +19,7 @@ export class PostListComponent implements OnInit {
   postsPageSearch: PageSearch<Post> = new PageSearch(new Post());
   usersPageSearch: PageSearch<User> = new PageSearch(new User());
   posts$: Observable<Array<BlogPost>>;
-  users: Array<User>;
+
   hashParam = hashDetail;
   hyphenise = hyphenIze;
   constructor(
@@ -41,8 +41,8 @@ export class PostListComponent implements OnInit {
     ]).pipe(
       map(([posts, users, photo]) => {
         return posts.map((post) => {
-          /**Save users inorder to be used in the dropdown to select user when creating a post */
-          this.users = users;
+          /**Save users inorder to be used in fake authentication to select user when creating a post */
+          this.userSe.users.next(users);
           /**Find the author of this post and add it to the post payload, making it a @type BlogPost */
           const author = users.find((user) => user.id === post.userId);
           return {
@@ -61,7 +61,7 @@ export class PostListComponent implements OnInit {
     );
   };
 
-  toCreatePost = (uId: number): void => {
-    this.router.navigate([""], { state: { id: uId } });
+  toCreatePost = (): void => {
+    this.router.navigate(["/create-post"]);
   };
 }

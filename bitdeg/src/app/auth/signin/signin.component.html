@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Signin with an existing user</h2>
+
+<mat-dialog-content>
+    <mat-form-field appearance="standard" class="w-100">
+        <mat-label>Select user</mat-label>
+        <mat-select [(ngModel)]="selectedUser">
+            <mat-option *ngFor="let user of availableUsers|async" [value]="user">
+                {{user.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-raised-button (click)="close()">Close</button>
+    <button mat-raised-button color="primary" (click)="signin(selectedUser)">Signin</button>
+</mat-dialog-actions>

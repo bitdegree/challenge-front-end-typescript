@@ -1,10 +1,10 @@
-import { Location } from "@angular/common";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Post } from "@core/models";
 import { UntilDestroy } from "@ngneat/until-destroy";
 import { PostService } from "@posts/post.service";
+import { AuthService } from "@shared/services/auth.service";
 import { of } from "rxjs";
 import { concatMap, delay, exhaustMap, tap } from "rxjs/operators";
 
@@ -20,15 +20,17 @@ export class PostFormComponent implements OnInit {
   @Input() post: Post;
   @Output() editSaved = new EventEmitter<boolean>();
   editMode: boolean;
+  userId: number; //signed in user id
   constructor(
     private fb: FormBuilder,
     private posts: PostService,
-    private location: Location,
+    private auth: AuthService,
     private router: Router,
   ) {}
 
   ngOnInit(): void {
-    // this.getUserId();
+    this.auth.activeUser.subscribe((user) => (this.userId = user?.id));
+    this.getUserId();
   }
 
   getUserId = (): void => {
@@ -45,10 +47,6 @@ export class PostFormComponent implements OnInit {
       userId: [this.post?.body ?? this.userId, [Validators.required]],
     });
   };
-
-  get userId(): number {
-    return (<{ id: number }>this.location.getState()).id;
-  }
 
   isFormValid = (): boolean => {
     if (this.postForm.invalid) this.postForm.markAllAsTouched();

@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { PageSearch, User } from "@core/models";
 import { env } from "@env/environment";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { ErrorHandler, ErrorHandlerService } from "./error-handling.service";
 
@@ -12,6 +12,7 @@ import { ErrorHandler, ErrorHandlerService } from "./error-handling.service";
 export class UserService {
   private baseUrl = `${env.BASE_API}/users`;
   private handleError: ErrorHandler;
+  public users: BehaviorSubject<User[]> = new BehaviorSubject(null);
   constructor(private http: HttpClient, errorHandler: ErrorHandlerService) {
     this.handleError = errorHandler.createErrorHandler();
   }

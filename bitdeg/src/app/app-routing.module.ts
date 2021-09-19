@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AuthGuard } from "@core/guards/auth.guard";
 import {
   HomeComponent,
   PostDetailsComponent,
@@ -14,7 +15,11 @@ const routes: Routes = [
     children: [
       { path: "", component: PostListComponent },
       { path: "posts/:slug/:uId/:pId", component: PostDetailsComponent },
-      { path: "create-post", component: PostFormComponent },
+      {
+        path: "create-post",
+        component: PostFormComponent,
+        canActivate: [AuthGuard],
+      },
       { path: "**", redirectTo: "", pathMatch: "full" },
     ],
   },
