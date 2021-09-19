@@ -8,12 +8,12 @@ const routes: Routes = [
     pathMatch:'full'
   },
   {
-    path:'post',
+    path: 'post/:postID',
     loadChildren: () => import('./pages/post/post-screen.module').then(m => m.PostScreenModule),
     pathMatch:'full'
   },
   {
-    path:'user',
+    path:'user/:userID',
     loadChildren: () => import('./pages/user/user-screen.module').then(m => m.UserScreenModule),
     pathMatch:'full'
   },

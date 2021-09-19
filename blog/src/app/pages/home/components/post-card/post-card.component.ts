@@ -22,11 +22,11 @@ export class PostCardComponent implements OnInit {
   }
 
   headerClick(){
-    this.router.navigate(['/post', {postID : this.Post.id}]);
+    this.router.navigate(['/post', this.Post.id]);
   }
 
   authorClick(){
-    this.router.navigate(['/user', {userID : this.Post.userId}]);
+    this.router.navigate(['/user', this.Post.userId]);
   }
 
 }

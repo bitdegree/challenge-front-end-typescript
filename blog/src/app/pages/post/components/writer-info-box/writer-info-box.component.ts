@@ -33,7 +33,7 @@ export class WriterInfoBoxComponent implements OnInit {
   }
 
   nameClicked(){
-    this.router.navigate(['/user', {userID : this.User.id}]);
+    this.router.navigate(['/user', this.User.id]);
   }
 
 

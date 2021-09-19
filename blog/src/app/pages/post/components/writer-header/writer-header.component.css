@@ -22,3 +22,9 @@
     text-decoration: underline;
     cursor: pointer;
 }
+
+.blog-post-writer-header{
+    width: 100%;
+    border-bottom: 1px solid black;
+    margin-bottom: 2%;
+}
