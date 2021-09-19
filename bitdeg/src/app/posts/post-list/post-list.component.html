@@ -1,22 +1,30 @@
 <h4 class="h4 text-color mb-5">Write and Connect.</h4>
-<button mat-flat-button color="primary" class="pill-button">Create post</button>
+<button mat-flat-button color="primary" class="pill-button" [matMenuTriggerFor]="menu">Create post</button>
 
 <section class="row mt-3">
-    <a [routerLink]="['/posts', 'this-is-a-test-post-blog', 1, 1]" class="col-12 col-lg-6 mb-3"
-        *ngFor="let i of [1,2,3,4,5,6,7,7,8,9,0]">
-        <div class="image-placeholder">
-            <img src="https://via.placeholder.com/600/771796" class="img-fluid w-100 h-100" alt="post image">
-        </div>
-        <div class="d-flex justify-content-between mt-1 mt-lg-2">
-            <div class="rounded-circle img-bg me-2">
-                <img src="https://via.placeholder.com/50/d0d147" class="rounded-circle img-fluid w-100 h-100">
+    <ng-container *ngFor="let post of posts$|async">
+        <a [routerLink]="['/posts', hyphenise(post.title), hashParam(post.userId.toString()), hashParam(post.id.toString())]"
+            class="col-12 col-lg-6 mb-3">
+            <div class="image-placeholder">
+                <img src="" [bitdegLazyImage]="post.images.original" class="img-fluid w-100 h-100" [alt]="post.title">
             </div>
-            <div class="d-flex flex-column">
-                <span class="fw-normal">Lorem ipsum som connecticue toseu</span>
-                <span class="text-color">John Gregory</span>
-                <small class="text-muted text-wrap">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Nam, fuga. Reprehenderit doloribus, minima adipisci...</small>
+            <div class="d-flex justify-content-between justify-content-lg-start mt-1 mt-lg-2">
+                <div class="rounded-circle img-bg me-2">
+                    <img src="" [bitdegLazyImage]="post.images.thumbnail" class="rounded-circle img-fluid w-100 h-100">
+                </div>
+                <div class="d-flex flex-column">
+                    <span class="fw-normal text-wrap">{{post.title|titlecase}}</span>
+                    <span class="text-color">{{post.user.name|titlecase}}</span>
+                    <small class="text-muted text-wrap">{{post.body.substr(1,100)+"..."}}</small>
+                </div>
             </div>
-        </div>
-    </a>
+        </a>
+    </ng-container>
 </section>
+
+
+<mat-menu #menu="matMenu">
+    <button mat-menu-item *ngFor="let user of users">
+        <span>{{user.name}}</span>
+    </button>
+</mat-menu>

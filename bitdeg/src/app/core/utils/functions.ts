@@ -12,4 +12,6 @@ const unHashDetail = (arg: string): string => atob(arg);
 const isObjectEmpty = (arg: Object): boolean =>
   !arg || Object.keys(arg).length === 0;
 
-export { generateRandomColor, hashDetail, unHashDetail, isObjectEmpty };
+const hyphenIze = (arg: string): string => arg.split(" ").join("-");
+
+export { generateRandomColor, hashDetail, unHashDetail, isObjectEmpty, hyphenIze };

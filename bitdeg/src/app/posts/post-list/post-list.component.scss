@@ -10,7 +10,12 @@
   height: 50px;
   width: 50px;
   min-width: 50px;
-  background-color: $text-color;
+  @at-root {
+    .img-bg,
+    .image-placeholder {
+      background-color: $text-color;
+    }
+  }
 }
 
 .pill-button {
@@ -21,6 +26,6 @@
 
 @media only screen and (min-width: $layout-breakpoint-large) {
   .image-placeholder {
-    height: 40vh;
+    height: 250px;
   }
-};
+} ;

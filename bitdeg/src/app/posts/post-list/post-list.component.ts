@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { BlogPost, PageSearch, Post, User } from "@core/models";
+import { hashDetail, hyphenIze } from "@core/utils";
 import { UntilDestroy } from "@ngneat/until-destroy";
 import { PostService } from "@posts/post.service";
 import { PhotoService } from "@shared/services/photo.service";
@@ -19,6 +20,8 @@ export class PostListComponent implements OnInit {
   usersPageSearch: PageSearch<User> = new PageSearch(new User());
   posts$: Observable<Array<BlogPost>>;
   users: Array<User>;
+  hashParam = hashDetail;
+  hyphenise = hyphenIze;
   constructor(
     private postSe: PostService,
     private userSe: UserService,

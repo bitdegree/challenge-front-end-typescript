@@ -7,7 +7,7 @@ import {
   OnChanges,
   OnInit,
 } from "@angular/core";
-import { generateRandomColor } from "@core/utils";
+import { generateRandomColor as randomColor } from "@core/utils";
 
 @Directive({
   selector: "[bitdegLazyImage]",
@@ -18,16 +18,21 @@ export class LazyImageDirective implements OnInit {
   constructor(private el: ElementRef) {}
 
   ngOnInit(): void {
-    this.lazyLoadImage();
+    this.isImageInView() && this.loadImage();
   }
 
   @HostListener("window:scroll", ["$event"]) lazyLoadImage(): void {
+    if (this.imageUrl && this.imageUrl.length > 0) return;
     this.isImageInView() && this.loadImage();
   }
 
   private isImageInView = (): boolean => {
     const rect = this.el.nativeElement.getBoundingClientRect();
-    return rect.top >= 0;
+    return (
+      rect.top >= 0 &&
+      rect.bottom <=
+        (window.innerHeight || document.documentElement.clientHeight)
+    );
   };
 
   private loadImage = (): void => {
@@ -42,6 +47,6 @@ export class LazyImageDirective implements OnInit {
   };
 
   private replaceHex = (url: string): string => {
-    return url.replace(url.substr(url.lastIndexOf("/")), generateRandomColor());
+    return url.replace(url.substr(url.lastIndexOf("/")), `/${randomColor()}`);
   };
 }
