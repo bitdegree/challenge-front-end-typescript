@@ -1,5 +1,5 @@
 .blog-post{
-    margin-top: 8%;
+    margin-top: 5%;
     width: 50%;
 }
 
@@ -20,4 +20,12 @@
     width: 100%;
     top: 0;
     z-index: 2;
+}
+
+.to-edit-page{
+font-size: xx-large;
+}
+
+.to-edit-page:hover{
+    cursor: pointer;
 }

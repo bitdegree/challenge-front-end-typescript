@@ -1,8 +1,8 @@
 <div class="blog-post-writer-info-box">
     <div class="blog-post-writer-info-box-author">
         <i class="bi bi-person-circle writer-icon"></i>
-        <p [innerText]="User.name" (click)="nameClicked()" class="blog-post-writer-info-box-name"></p>
+        <p [innerText]="user.name" (click)="nameClicked()" class="blog-post-writer-info-box-name"></p>
     </div>
-    <p [innerText]="User.email" class="blog-post-writer-info-email"></p>
-    <p [innerText]="User.website" (click)="websiteClicked()" class="blog-post-writer-info-website"></p>
+    <p [innerText]="user.email" class="blog-post-writer-info-email"></p>
+    <p [innerText]="user.website" (click)="websiteClicked()" class="blog-post-writer-info-website"></p>
 </div>

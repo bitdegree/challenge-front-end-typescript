@@ -16,6 +16,7 @@ export class CommentService extends BaseService {
         super()
     }
 
+    //get specific post's comments from api
     getPostComments(postId : number): Observable<PostComment[]> {
         const url = environment.Endpoint.concat('comments?postId=',postId.toString());
         return this.httpClient.get<PostComment[]>(url)
@@ -26,6 +27,7 @@ export class CommentService extends BaseService {
         );
     }
 
+    //create comment to a post,(not actually but at least it sending the request)
     createPostComments(post : PostComment): Observable<PostComment> {
         const url = environment.Endpoint.concat('comments');
         return this.httpClient.post<PostComment>(url,post)

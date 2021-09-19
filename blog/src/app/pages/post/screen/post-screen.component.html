@@ -1,10 +1,11 @@
 <div class="container blog-post">
-    <div id="header">
-        <app-writer-header *ngIf="User" [User]="User"></app-writer-header>
+    <div *ngIf="post" class="d-flex justify-content-end">
+        <i class="bi bi-pencil-square to-edit-page" title="Edit this post" (click)="editClicked()"></i>
     </div>
-    <app-post-body *ngIf="Post" [Post]="Post"></app-post-body>
-    <app-comment-body *ngIf="Comments" [Comments]="Comments"></app-comment-body>
-    <app-comment-form *ngIf="Post" [PostID]="Post.id" (CommentSubmitted)="CommentSubmitted($event)"></app-comment-form>
+    <app-writer-header *ngIf="user" [user]="user"></app-writer-header>
+    <app-post-body *ngIf="post" [post]="post"></app-post-body>
+    <app-comment-body *ngIf="comments" [comments]="comments"></app-comment-body>
+    <app-comment-form *ngIf="post" [postID]="post.id" (commentSubmitted)="commentSubmitted($event)"></app-comment-form>
 </div>
-<app-writer-info-box id='infoBox' *ngIf="User" [User]="User"></app-writer-info-box>
-<app-alert class="alert" [AlertType]="AlertType" [AlertMessage]="AlertMessage" [DisplayTime]="DisplayTime" ></app-alert>
+<app-writer-info-box id='infoBox' *ngIf="user" [user]="user"></app-writer-info-box>
+<app-alert class="alert" [alertType]="alertType" [alertMessage]="alertMessage" [displayTime]="displayTime"></app-alert>

@@ -8,8 +8,8 @@ import { PostComment } from 'src/app/models/comment.model';
 })
 export class CommentFormComponent implements OnInit {
 
-  @Input() PostID !: number;
-  @Output() CommentSubmitted = new EventEmitter<PostComment>();
+  @Input() postID !: number;
+  @Output() commentSubmitted = new EventEmitter<PostComment>();
 
   constructor() { }
 
@@ -18,37 +18,32 @@ export class CommentFormComponent implements OnInit {
   Name !: string;
   Body !: string;
 
-  SumbitClicked : boolean = false;
+  sumbitClicked : boolean = false;
 
   ngOnInit(): void {
   }
 
+  //checking if any value is empty
   sumbit(){
     if(this.Email == undefined || this.Name == undefined ||this.Body == undefined || this.Email == '' || this.Name == '' || this.Email == '' )
     {
-      this.SumbitClicked = true;
+      this.sumbitClicked = true;
       return;
     }
     this.confirm();
   }
 
+  //sending form values to parent component
   confirm(){
-    this.CommentSubmitted.emit({
+    this.commentSubmitted.emit({
       body : this.Body,
       email : this.Email,
       name : this.Name,
-      postId : this.PostID
+      postId : this.postID
     })
     this.Body = '';
     this.Email = '';
     this.Name = '';
-    this.SumbitClicked = false;
-
-
-
+    this.sumbitClicked = false;
   }
-
-
-
-
 }

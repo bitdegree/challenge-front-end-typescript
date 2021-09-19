@@ -1,8 +1,8 @@
-<div class="container" style="width: 50%;" *ngIf="User">
-    <app-user-info-section *ngIf="User" [User]="User"></app-user-info-section>
+<div class="container" style="width: 50%;" *ngIf="user">
+    <app-user-info-section *ngIf="user" [user]="user"></app-user-info-section>
 
     <p class="user-information-panel-latest-post-header">Latest Posts</p>
-    <div *ngFor="let item of UserPosts">
-        <app-latest-post [Post]="item" ></app-latest-post>
+    <div *ngFor="let item of userPosts">
+        <app-latest-post [post]="item" ></app-latest-post>
     </div>
 </div>

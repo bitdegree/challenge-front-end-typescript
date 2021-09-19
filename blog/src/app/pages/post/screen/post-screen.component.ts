@@ -24,35 +24,39 @@ export class PostScreenComponent implements OnInit,OnDestroy {
     readonly commentService: CommentService) { }
 
 
-  Post !: Post;
-  Comments !: PostComment[];
-  User !: User;
+  post !: Post;
+  comments !: PostComment[];
+  user !: User;
 
-  NotificationSuccess: boolean = false;
-  NotificationDanger: boolean = false;
+  //Globals For Alert
 
-  AlertType !: number;
-  AlertMessage !: string;
-  DisplayTime : number = 0;
+  notificationSuccess: boolean = false;
+  notificationDanger: boolean = false;
+
+  alertType !: number;
+  alertMessage !: string;
+  displayTime : number = 0;
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(i => {
-      this.findPost(i.postID);
-      this.findComments(i.postID);
+    const sub = this.activatedRoute.params.subscribe(param => {
+      this.findPost(param.postID); //fecting post data
+      this.findComments(param.postID); //fetching comments
     });
+    this.subscribes.push(sub);
   }
 
   findPost(postID: number) {
+    //if service already have the post user needs then fetch it from service, otherwise fetch it with request
     if (this.postService.Posts && this.postService.Posts.filter(i => i.id == postID).length > 0) {
-      this.Post = this.postService.Posts.filter(i => i.id == postID)[0];
-      this.findUser(this.Post.userId);
+      this.post = this.postService.Posts.filter(i => i.id == postID)[0];
+      this.findUser(this.post.userId);
     }
     else {
       const sub = this.postService.getPost(postID).subscribe(data => {
         if (data == undefined)
           this.router.navigateByUrl('');
         else
-          this.Post = data;
+          this.post = data;
         this.findUser(data.userId)
       })
       this.subscribes.push(sub);
@@ -60,38 +64,45 @@ export class PostScreenComponent implements OnInit,OnDestroy {
   }
 
   findComments(postID: number) {
-    this.commentService.getPostComments(postID).subscribe(data => this.Comments = [...data]);
+    const sub = this.commentService.getPostComments(postID).subscribe(data => this.comments = [...data]);
+    this.subscribes.push(sub);
   }
 
   findUser(userID: number) {
+    //if service already have the user information needs then fetch it from service, otherwise fetch it with request
     if (this.userService.Users && this.userService.Users.filter(i => i.id == userID).length > 0) {
-      this.User = this.userService.Users.filter(i => i.id == userID)[0];
+      this.user = this.userService.Users.filter(i => i.id == userID)[0];
     }
     else {
       const sub = this.userService.getUser(userID).subscribe(data => {
-        this.User = data;
+        this.user = data;
       })
       this.subscribes.push(sub);
     }
   }
 
-  CommentSubmitted(e: PostComment) {
-    this.DisplayTime = 0;
+  //making sure alert component show right after button clicked
+  commentSubmitted(e: PostComment) {
+    this.displayTime = 0;
     const sub = this.commentService.createPostComments(e).subscribe(data => {
       if (data) {
-        this.Comments.push(e)
-        this.AlertType = 1;
-        this.AlertMessage = 'Your Comment Successfully Added'
-        this.DisplayTime = 5000;
+        this.comments.push(e)
+        this.alertType = 1;
+        this.alertMessage = 'Your Comment Successfully Added'
+        this.displayTime = 5000;
       }
       else {
-        this.AlertType = 2;
-        this.AlertMessage = 'Something Went Wrong, Please Try Again Later'
-        this.DisplayTime = 5000;
+        this.alertType = 2;
+        this.alertMessage = 'Something Went Wrong, Please Try Again Later'
+        this.displayTime = 5000;
       }
     }
     );
     this.subscribes.push(sub);
+  }
+
+  editClicked(){
+    this.router.navigate(['/post/create/', this.post.id])
   }
 
   ngOnDestroy(): void {

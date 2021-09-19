@@ -31,6 +31,10 @@ export class BlogHeaderComponent implements OnInit,OnDestroy {
     this.router.navigate(['/login']);
   }
 
+  toCreatePage(){
+    this.router.navigate(['/post/create']);
+  }
+
   ngOnDestroy(): void {
     while(this.subscribes.length > 0) {
       this.subscribes.pop()?.unsubscribe();

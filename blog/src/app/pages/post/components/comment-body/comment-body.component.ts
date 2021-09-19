@@ -8,7 +8,7 @@ import { PostComment } from 'src/app/models/comment.model';
 })
 export class CommentBodyComponent implements OnInit {
 
-  @Input() Comments !: PostComment[];
+  @Input() comments !: PostComment[];
 
   constructor() { }
 

@@ -8,7 +8,7 @@ import { User } from 'src/app/models/user.model';
 })
 export class UserInfoSectionComponent implements OnInit {
 
-  @Input() User !: User;
+  @Input() user !: User;
 
   constructor() { }
 

@@ -1,7 +1,7 @@
 <div class="container">
-    <div class="home-blog-posts" *ngIf="BlogPosts">
-        <div *ngFor="let item of BlogPosts; let i = index">
-            <app-post-card *ngIf="i < ShownPostsCount" [Post]="item"></app-post-card>
+    <div class="home-blog-posts" *ngIf="blogPosts">
+        <div *ngFor="let item of blogPosts; let i = index">
+            <app-post-card *ngIf="i < shownPostsCount" [post]="item"></app-post-card>
         </div>
     </div>
 </div>

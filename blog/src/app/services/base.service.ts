@@ -1,3 +1,4 @@
+import { HttpHeaders } from "@angular/common/http";
 import { Observable, of } from "rxjs"
 
 export class BaseService {
@@ -11,5 +12,12 @@ export class BaseService {
             return of(result as T);
         };
     }
+
+
 }
 
+export const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+    })
+  };

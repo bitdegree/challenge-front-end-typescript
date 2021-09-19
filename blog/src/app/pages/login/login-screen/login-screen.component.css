@@ -1,18 +1,11 @@
 .login {
-    width: 50%;
+    width: 30%;
 }
 
 .demo-text{
     color:grey;
     font-size: small;
 }
-
-.alert{
-    background-color: #fed3d3;
-    color: #820000;
-    padding: 1rem;
-    margin-bottom: 1rem;
-  }
 
 
   .login-panel {

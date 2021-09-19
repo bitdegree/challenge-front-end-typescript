@@ -8,25 +8,23 @@ import { Router } from '@angular/router';
 })
 export class PostCardComponent implements OnInit {
 
-  @Input() Post !: any;
+  @Input() post !: any;
 
   constructor(readonly router : Router) { }
 
-  BodyToggle : boolean = false;
 
   ngOnInit(): void {
   }
 
   toggleBody(){
-    this.BodyToggle = !this.BodyToggle;
   }
 
   headerClick(){
-    this.router.navigate(['/post', this.Post.id]);
+    this.router.navigate(['/post', this.post.id]);
   }
 
   authorClick(){
-    this.router.navigate(['/user', this.Post.userId]);
+    this.router.navigate(['/user', this.post.userId]);
   }
 
 }

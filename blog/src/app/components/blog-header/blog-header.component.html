@@ -1,9 +1,8 @@
-
-
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
     <div class="container">
         <div class="d-flex justify-content-start">
-            <a href="javascript:void(0)" (click)="toHomePage()" class="bi bi-house-door"></a>
+            <a href="javascript:void(0)" (click)="toHomePage()" class="bi bi-house-door home-page"></a>
+            <a href="javascript:void(0)" (click)="toCreatePage()" class="bi bi-clipboard-plus new-post">New Post</a>
         </div>
         <div class="d-flex justify-content-end">
             <p *ngIf="user$" class="user-name">Welcome {{user$.name}}</p>

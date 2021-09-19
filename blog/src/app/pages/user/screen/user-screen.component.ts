@@ -21,25 +21,27 @@ export class UserScreenComponent implements OnInit,OnDestroy {
               readonly postService : PostService) { }
 
 
-  User !: User;
-  UserPosts !: Post[];
+  user !: User;
+  userPosts !: Post[];
 
-  LatestPostCount = 10;
+  latestPostCount = 10;
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(i => {
+    const sub =this.activatedRoute.params.subscribe(i => {
       this.findUser(i.userID);
-      this.getLatestUserPosts(i.userID,0,this.LatestPostCount);
+      this.getLatestUserPosts(i.userID,0,this.latestPostCount);
     });
+    this.subscribes.push(sub);
   }
 
+  //fetching user data from service, if it has none then fetch it from api
   findUser(userID: number) {
     if (this.userService.Users && this.userService.Users.filter(i => i.id == userID).length > 0) {
-      this.User = this.userService.Users.filter(i => i.id == userID)[0];
+      this.user = this.userService.Users.filter(i => i.id == userID)[0];
     }
     else {
       const sub = this.userService.getUser(userID).subscribe(data => {
-        this.User = data;
+        this.user = data;
     })
     this.subscribes.push(sub);
     }
@@ -47,7 +49,7 @@ export class UserScreenComponent implements OnInit,OnDestroy {
 
   getLatestUserPosts(userID:number,start:number,end:number){
     const sub = this.postService.getPostsOnlyOneUserWithBoundry(userID,start,end)
-    .subscribe(data => this.UserPosts = [...data]
+    .subscribe(data => this.userPosts = [...data]
       .sort((a, b) => a.id < b.id ? 1 : a.id > b.id ? -1 : 0)); //I ordered the posts because bigger id means latest created among posts.
     this.subscribes.push(sub);
   }

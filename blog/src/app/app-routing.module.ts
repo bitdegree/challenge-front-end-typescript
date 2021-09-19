@@ -8,6 +8,16 @@ const routes: Routes = [
     pathMatch:'full'
   },
   {
+    path: 'post/create',
+    loadChildren: () => import('./pages/post-create/post-create-screen.module').then(m => m.PostCreateScreenModule),
+    pathMatch:'full'
+  },
+  {
+    path: 'post/create/:postID',
+    loadChildren: () => import('./pages/post-create/post-create-screen.module').then(m => m.PostCreateScreenModule),
+    pathMatch:'full'
+  },
+  {
     path: 'post/:postID',
     loadChildren: () => import('./pages/post/post-screen.module').then(m => m.PostScreenModule),
     pathMatch:'full'
@@ -22,6 +32,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login-screen.module').then(m => m.LoginScreenModule),
     pathMatch:'full'
   },
+
   {
     path:'**',
     redirectTo:''

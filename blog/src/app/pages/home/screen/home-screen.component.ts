@@ -16,34 +16,30 @@ export class HomeScreenComponent implements OnInit, OnDestroy {
     readonly userService: UserService) { }
 
 
-  BlogPosts: any[] = [];
+  blogPosts: any[] = []; //Array to hold merged arrays, user and posts
 
-  ShownPostsCount = 0;
-  triggerMorePostsOnce = false;
+  shownPostsCount = 0; //Store how many post is shown at home page since it is infinite scroll
+  triggerMorePostsOnce = false; //Variable to make sure won't fetch data since scroll event may trigger more than once
 
   ngOnInit(): void {
     this.getUsers();
-    this.showMorePosts(10);
+    this.showMorePosts(10); //I started with 10 post only at first
   }
 
-  ngOnDestroy(): void {
-    while(this.subscribes.length > 0) {
-      this.subscribes.pop()?.unsubscribe();
-    }
-  }
-
+  // Get Posts only that shown in the page
   getPosts(start: number, end: number) {
     const sub = this.postService.getPostWithBoundry(start, end)
       .subscribe(
         data => {
-          this.postService.Posts = this.postService.Posts.concat(...data);
+          this.postService.Posts = this.postService.Posts.concat(...data); 
           this.triggerMorePostsOnce = false;
-          this.mergePostWithAuthors();
+          this.mergePostWithAuthors(); 
         }
       );
     this.subscribes.push(sub);
   }
 
+  //get all users in order to merge them with posts authors
   getUsers() {
     if (this.userService.Users == undefined) {
       let sub = this.userService.getUsers()
@@ -57,17 +53,19 @@ export class HomeScreenComponent implements OnInit, OnDestroy {
     }
   }
 
+  //handling more whenever scroll event triggered
   showMorePosts(howMany: number) {
-    if (this.ShownPostsCount >= this.postService.Posts.length) {
-      this.getPosts(this.ShownPostsCount, this.ShownPostsCount + howMany);
+    if (this.shownPostsCount >= this.postService.Posts.length) {
+      this.getPosts(this.shownPostsCount, this.shownPostsCount + howMany);
     }
     else {
       this.triggerMorePostsOnce = false;
       this.mergePostWithAuthors();
     }
-    this.ShownPostsCount += howMany;
+    this.shownPostsCount += howMany;
   }
 
+  //listening scroll and if it gots the bottom, load more posts
   @HostListener("window:scroll", ["$event"])
   onWindowScroll() {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && !this.triggerMorePostsOnce) {
@@ -76,10 +74,16 @@ export class HomeScreenComponent implements OnInit, OnDestroy {
     }
   }
 
+  //merging 2 arrays into one
   mergePostWithAuthors() {
     if (this.userService.Users != undefined && this.postService.Posts != undefined)
-      this.BlogPosts = this.postService.Posts.map(item => Object.assign({}, this.userService.Users.filter(u => u.id == item.userId)[0], item));
+      this.blogPosts = this.postService.Posts.map(item => Object.assign({}, this.userService.Users.filter(u => u.id == item.userId)[0], item));
   }
 
+  ngOnDestroy(): void {
+    while(this.subscribes.length > 0) {
+      this.subscribes.pop()?.unsubscribe();
+    }
+  }
 
 }

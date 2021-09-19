@@ -17,9 +17,10 @@ export class UserService extends BaseService {
         super()
     }
 
-    Users !: User[];
+    Users !: User[]; //same logic with post service
 
 
+    //get all users
     getUsers(): Observable<User[]> {
         const url = environment.Endpoint.concat('users');
         return this.httpClient.get<User[]>(url)
@@ -30,6 +31,7 @@ export class UserService extends BaseService {
         );
     }
 
+    //get specific user
     getUser(userId:number): Observable<User> {
         const url = environment.Endpoint.concat('users/',userId.toString());
         return this.httpClient.get<User>(url)

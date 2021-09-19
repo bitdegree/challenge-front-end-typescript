@@ -9,7 +9,7 @@ import { User } from 'src/app/models/user.model';
 })
 export class WriterHeaderComponent implements OnInit {
 
-  @Input() User !: User;
+  @Input() user !: User;
 
   constructor(readonly router : Router) { }
 
@@ -17,11 +17,11 @@ export class WriterHeaderComponent implements OnInit {
   }
 
   websiteClicked(){
-    window.open(this.User.website, '_blank');
+    window.open(this.user.website, '_blank');
   }
 
   nameClicked(){
-    this.router.navigate(['/user', this.User.id]);
+    this.router.navigate(['/user', this.user.id]);
   }
 
 }

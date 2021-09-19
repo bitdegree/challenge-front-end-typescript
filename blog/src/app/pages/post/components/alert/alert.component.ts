@@ -6,6 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.css'],
   animations: [
+    //animation for good looking, it slidesssss
     trigger(
       'enterAnimationHorizontal', [
         transition(':enter', [
@@ -21,22 +22,22 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AlertComponent implements OnInit {
 
-  @Input() AlertType !: number; // 1 = Success 2 = Danger 
-  @Input() AlertMessage !: string;
+  @Input() alertType !: number; // 1 = Success 2 = Danger 
+  @Input() alertMessage !: string;
 
-  Show : boolean = false;
+  show : boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  @Input() set DisplayTime(DisplayTime : number){
+  @Input() set displayTime(displayTime : number){
     const _this = this;
-    this.Show = true;
+    this.show = true;
     setTimeout(function () {
-      _this.Show = false;
-    }, DisplayTime);
+      _this.show = false;
+    }, displayTime);
   }
 
 }

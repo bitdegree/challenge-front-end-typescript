@@ -9,7 +9,7 @@ import { Post } from 'src/app/models/post.model';
 })
 export class LatestPostComponent implements OnInit {
 
-  @Input() Post !: Post;
+  @Input() post !: Post;
 
   constructor(readonly router: Router) { }
 
@@ -18,7 +18,7 @@ export class LatestPostComponent implements OnInit {
 
 
   headerClicked() {
-    this.router.navigate(['/post', this.Post.id]);
+    this.router.navigate(['/post', this.post.id]);
   }
 
 }

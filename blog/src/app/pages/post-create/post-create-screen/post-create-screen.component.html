@@ -1,0 +1,31 @@
+<div class="container post-create-screen" *ngIf="post">
+    <div class="post-create-screen-card card">
+
+        <p class="header" [innerText]="isEdit ? 'Edit Post' : 'Create Post'"></p>
+
+        <input type="text" id="title" name="title" class="form-control post-title" placeholder="Title" required
+            [(ngModel)]="post.title" #title='ngModel'>
+
+        <div *ngIf="title.invalid && sumbitClicked" class="form-alert">
+            <div *ngIf="title.errors?.required">
+                Title is required.
+            </div>
+        </div>
+
+        <textarea type="text" id="body" name="body" class="form-control post-body" placeholder="Body" required
+            [(ngModel)]="post.body" #body='ngModel'></textarea>
+
+        <div *ngIf="body.invalid && sumbitClicked" class="form-alert">
+            <div *ngIf="body.errors?.required">
+                Body is required.
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end 2-gap">
+
+            <button class="btn btn-primary post-submit" [innerText]="isEdit ? 'Edit' : 'Publish'"
+                (click)="submit()"></button>
+        </div>
+
+    </div>
+</div>

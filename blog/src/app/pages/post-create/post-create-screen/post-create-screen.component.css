@@ -1,0 +1,29 @@
+.post-create-screen{
+    width: 50%;
+}
+
+.post-create-screen-card{
+    margin-top: 10%;
+    padding: 3rem;
+}
+
+.header {
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+.post-title{
+    margin-top: 5%;
+}
+
+.post-body{
+    height: 15rem;
+    margin-top: 5%;
+}
+
+.post-submit{
+    margin-top: 5%;
+    font-size: large;
+}

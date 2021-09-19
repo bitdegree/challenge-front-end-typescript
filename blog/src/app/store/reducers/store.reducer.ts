@@ -9,7 +9,8 @@ export interface State {
 export const initialState: State = {
     user: undefined
 };
-
+//one reducer to whole store, we have a state object here and only contains one object, User. 
+//If we may need, we can just add to interface and store will handle everything, only actions have to be made
 const _storeReducer = createReducer(
     initialState,
     on(login, (state: State, payload: User | undefined) => {

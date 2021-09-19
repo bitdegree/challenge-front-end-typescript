@@ -1,8 +1,14 @@
 <div class="container login">
     <!-- if already logged in -->
     <div *ngIf="user$">
+
+        <div class="login-panel d-flex flex-column">
+
         <p [innerText]="'You are already logged in, ' + user$.name"></p>
-        <button class="btn btn-secondary" (click)="loggedOut()">Log Out</button>
+        <button class="btn btn-secondary d-grid gap-2 actions" (click)="loggedOut()">Log Out</button>
+
+    </div>
+
     </div>
     <!-- if not logged in -->
     <div *ngIf="!user$">
@@ -10,7 +16,7 @@
         <div class="login-panel d-flex flex-column">
             <div>
                 <input type="text" id="username" name="username" class="form-control login-username"
-                    placeholder="Username" required [(ngModel)]="UserName" #username='ngModel'>
+                    placeholder="Username" required [(ngModel)]="userName" #username='ngModel'>
             </div>
 
             <div class="d-grid gap-2 actions">
@@ -21,7 +27,7 @@
 
         <div class="help">
 
-            <div *ngIf="WrongLogIn" class="alert">
+            <div *ngIf="wrongLogIn" class="form-alert">
                 <p>Please log in with users that already exists</p>
             </div>
             <!-- below code is only for demo -->

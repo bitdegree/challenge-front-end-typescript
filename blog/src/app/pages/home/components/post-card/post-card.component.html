@@ -1,11 +1,11 @@
 <div class="post card">
     <div>
         <div class="d-flex justify-content-between">
-            <p class="post-header" [innerText]="Post.title" (click)="headerClick()"></p>
-            <p class="ml-auto author" (click)="authorClick()" [innerText]='"Author: " + Post.name'>Author: {{Post.name}}</p>
+            <p class="post-header" [innerText]="post.title" (click)="headerClick()"></p>
+            <p class="ml-auto author" (click)="authorClick()" [innerText]='"Author: " + post.name'>Author: {{post.name}}</p>
         </div>
     </div>
     <div class="post-body">
-        <p [innerText]="Post.body"></p>
+        <p [innerText]="post.body"></p>
     </div>
 </div>

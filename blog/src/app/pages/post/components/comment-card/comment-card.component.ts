@@ -24,20 +24,20 @@ import { PostComment } from 'src/app/models/comment.model';
 export class CommentCardComponent implements OnInit {
 
 
-  @Input() Comment !: PostComment;
+  @Input() comment !: PostComment;
 
   constructor() { }
 
-  BodyToggle : boolean = false;
+  bodyToggle : boolean = false;
 
-  BodyToggleOff : string = "bi bi-arrow-down-circle-fill toggle"
-  BodyToggleOn : string = "bi bi-arrow-up-circle-fill toggle"
+  bodyToggleOff : string = "bi bi-arrow-down-circle-fill toggle"
+  bodyToggleOn : string = "bi bi-arrow-up-circle-fill toggle"
 
   ngOnInit(): void {
   }
 
-  BodyToggleClick(){
-    this.BodyToggle = !this.BodyToggle;
+  bodyToggleClick(){
+    this.bodyToggle = !this.bodyToggle;
   }
 
 }

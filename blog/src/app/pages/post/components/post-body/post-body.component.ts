@@ -9,7 +9,7 @@ import { User } from 'src/app/models/user.model';
 })
 export class PostBodyComponent implements OnInit {
 
-  @Input() Post !: Post;
+  @Input() post !: Post;
   
   constructor() { }
 
