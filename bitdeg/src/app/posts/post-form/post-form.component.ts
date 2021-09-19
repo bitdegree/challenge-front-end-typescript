@@ -28,7 +28,7 @@ export class PostFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getUserId();
+    // this.getUserId();
   }
 
   getUserId = (): void => {

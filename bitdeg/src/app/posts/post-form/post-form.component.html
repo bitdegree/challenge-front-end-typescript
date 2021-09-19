@@ -1,1 +1,24 @@
-<p>post-form works!</p>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <a [routerLink]="['']" role="button" mat-icon-button>
+        <mat-icon>arrow_back_ios</mat-icon>
+    </a>
+</div>
+
+<h6 class="h6 text-mono mb-3">{{!editMode ? 'Create ':'Edit'}} a post</h6>
+
+<form class="d-flex justify-content-center flex-column w-lg-50">
+    <mat-form-field appearance="standard">
+        <mat-label>Post Title*</mat-label>
+        <input type="text" matInput placeholder="Ex. 10 Reasons Why I Love Coding">
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+        <mat-label>Post Body*</mat-label>
+        <textarea matInput placeholder="Type in your blog post..." rows="10" cdkTextareaAutosize></textarea>
+    </mat-form-field>
+
+    <div class="d-flex justify-content-between">
+        <small class="text-muted">Saved at 11:00:43 pm</small>
+        <button type="button" mat-flat-button color="accent">Post</button>
+    </div>
+</form>

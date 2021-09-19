@@ -1,39 +1,53 @@
-@use '~@angular/material' as mat;
+@use "~@angular/material" as mat;
 @import "palette.scss";
+
+@include mat.core();
+
+$bitdeg-typography: mat.define-typography-config(
+  $font-family: "Trueno",
+);
 
 // Define a light theme
 $light-primary: mat.define-palette($bit-blue-palette, 900);
 $light-accent: mat.define-palette($bit-yellow-palette);
 $light-warn: mat.define-palette(mat.$red-palette);
 
-$light-theme: mat.define-light-theme((
- color: (
-   primary: $light-primary,
-   accent: $light-accent,
-   warn: $light-warn,
- )
-));
+$light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $light-primary,
+      accent: $light-accent,
+      warn: $light-warn,
+    ),
+    typography: $bitdeg-typography,
+  )
+);
 
 // Define a dark theme
 $dark-primary: mat.define-palette($bit-white-palette, 50);
 $dark-accent: mat.define-palette($bit-blue-palette, 900);
-$dark-theme: mat.define-dark-theme((
- color: (
-   primary: $dark-primary,
-   accent: $dark-accent,
- )
-));
 
-// Apply the dark theme by default
+$dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $dark-primary,
+      accent: $dark-accent,
+    ),
+    typography: $bitdeg-typography,
+  )
+);
+
+// // Apply the dark theme by default
 @include mat.core-theme($dark-theme);
-@include mat.button-theme($dark-theme);
-@include mat.tooltip-theme($dark-theme);
+// @include mat.button-theme($dark-theme);
+// @include mat.tooltip-theme($dark-theme);
+@include mat.all-component-themes($dark-theme);
 
 // Apply the light theme only when the `.light-theme` CSS class is applied
 // to an ancestor element of the components (such as `body`).
 .light-theme {
- @include mat.core-color($light-theme);
- @include mat.button-color($light-theme);
-//  @include mat.core-theme($light-theme);
- @include mat.tooltip-color($light-theme);
+  @include mat.core-color($light-theme);
+  // @include mat.button-color($light-theme);
+  // @include mat.tooltip-color($light-theme);
+  @include mat.all-component-colors($light-theme);
 }

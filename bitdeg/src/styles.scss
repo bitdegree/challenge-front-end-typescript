@@ -10,15 +10,12 @@
 
 $enable-negative-margins: true;
 
-html {
-  height: 100%;
-}
-
 body {
   font-family: "Trueno";
   padding: 0;
   margin: 0;
   font-size: 0.875em;
+  height: 100vh;
   &.dark-theme {
     background-color: $dark-page-color !important;
     color: $dark-text-color !important;
@@ -35,6 +32,25 @@ body {
   }
 }
 
+/* Keep footer at bottom */
+#bit {
+  min-height: 100%;
+  position: relative;
+  & > .container {
+    padding-bottom: 120px !important;
+  }
+  footer {
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    right: 10%;
+    height: 60px; 
+  }
+}
+/* end */
+
+
 header {
   position: -webkit-sticky;
   position: sticky;
@@ -45,6 +61,9 @@ header {
 a {
   text-decoration: none;
   color: currentColor;
+  &:hover {
+    color: currentColor;
+  }
 }
 
 //UTILITIES//
@@ -59,4 +78,3 @@ a {
   border-radius: 30px !important;
 }
 ///
-

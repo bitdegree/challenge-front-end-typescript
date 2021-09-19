@@ -6,7 +6,6 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent implements OnInit {
-
   darkMode: boolean;
   constructor() {}
 
@@ -25,6 +24,6 @@ export class HeaderComponent implements OnInit {
   }
 
   check(): boolean {
-   return document.querySelector("body").classList.contains("dark-theme");
+    return document.querySelector("body").classList.contains("dark-theme");
   }
 }
