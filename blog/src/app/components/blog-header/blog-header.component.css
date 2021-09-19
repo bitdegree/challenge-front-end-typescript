@@ -1,0 +1,6 @@
+::ng-deep .navbar{
+    z-index: 10;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
