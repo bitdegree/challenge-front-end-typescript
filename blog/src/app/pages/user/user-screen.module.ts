@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { UserScreenComponent } from './screen/user-screen.component';
 import { LatestPostComponent } from './components/latest-post/latest-post.component';
+import { UserInfoSectionComponent } from './components/user-info-section/user-info-section.component';
 @NgModule({
   declarations: [
     UserScreenComponent,
-    LatestPostComponent
+    LatestPostComponent,
+    UserInfoSectionComponent
   ],
   imports: [
     RouterModule.forChild([{

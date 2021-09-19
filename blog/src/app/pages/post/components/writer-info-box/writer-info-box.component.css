@@ -1,3 +1,19 @@
+
+.blog-post-writer-info-box{
+    display: block;
+    text-align: center;
+    border: 1px solid grey;
+    border-radius: 20%;
+    box-shadow: 5px 5px 5px  #ddd;
+    padding : 1rem;
+}
+
+@media (max-width: 999px) {
+    .blog-post-writer-info-box {
+        display: none;
+    }
+}
+
 .blog-post-writer-info-box-author{
     text-align: center;
     padding: 10%;
@@ -25,14 +41,6 @@
 .blog-post-writer-info-box-author:hover{
     text-decoration: underline;
     cursor: pointer;
-}
-
-.blog-post-writer-info-box{
-    display: block;
-    text-align: center;
-    border: 1px solid grey;
-    border-radius: 20%;
-    box-shadow: 5px 5px 5px  #ddd;
 }
 
 

@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 
@@ -14,18 +14,7 @@ export class WriterInfoBoxComponent implements OnInit {
 
   constructor(readonly router : Router) { }
 
-  BoxShow : boolean = true;
-
   ngOnInit(): void {
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    if(window.innerWidth < 1000)
-      this.BoxShow = false;
-    else 
-      this.BoxShow = true;
-      
   }
 
   websiteClicked(){

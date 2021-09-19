@@ -3,6 +3,11 @@
     width: 50%;
 }
 
+@media (max-width: 999px) {
+    .blog-post {
+        width: 80%;
+    }
+}
 
 #infoBox{
     position: fixed;
