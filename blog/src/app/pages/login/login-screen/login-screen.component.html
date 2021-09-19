@@ -1,6 +1,42 @@
-<div class="container">
-    <div class="login">
-    <button (click)='deneme()'>Deneme</button>
-    <button (click)='deneme2()'>Deneme2</button>
+<div class="container login">
+    <!-- if already logged in -->
+    <div *ngIf="user$">
+        <p [innerText]="'You are already logged in, ' + user$.name"></p>
+        <button class="btn btn-secondary" (click)="loggedOut()">Log Out</button>
     </div>
+    <!-- if not logged in -->
+    <div *ngIf="!user$">
+
+        <div class="login-panel d-flex flex-column">
+            <div>
+                <input type="text" id="username" name="username" class="form-control login-username"
+                    placeholder="Username" required [(ngModel)]="UserName" #username='ngModel'>
+            </div>
+
+            <div class="d-grid gap-2 actions">
+                <button class="btn btn-primary mx-5" (click)="logIn()">Log In</button>
+            </div>
+
+        </div>
+
+        <div class="help">
+
+            <div *ngIf="WrongLogIn" class="alert">
+                <p>Please log in with users that already exists</p>
+            </div>
+            <!-- below code is only for demo -->
+            <div class="demo-text">
+                <p>Please Log in with just usernames below</p>
+                <div *ngFor="let item of userService.Users; let i = index">
+                    <span [innerText]='item.username'>
+                    </span>
+                </div>
+            </div>
+            <!-- above code is only for demo -->
+
+        </div>
+
+
+    </div>
+
 </div>

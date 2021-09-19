@@ -4,3 +4,8 @@
     top: 0;
     left: 0;
 }
+
+.user-name {
+    margin: 0;
+    margin-right: 1rem;
+}

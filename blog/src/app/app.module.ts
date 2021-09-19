@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlogHeaderComponent } from './components/blog-header/blog-header.component';
 import { StoreModule } from '@ngrx/store';
-import { loginReducer } from './store/reducers/login.reducer';
+import { storeReducer } from './store/reducers/store.reducer';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { loginReducer } from './store/reducers/login.reducer';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({ state : loginReducer })
+    StoreModule.forRoot({ state : storeReducer })
   ],
   providers: [],
   bootstrap: [AppComponent]
