@@ -1,11 +1,11 @@
 # Project Details
 This project created with angular 2+ framework, used bootstrap for visuality
 ## How to Run
-1. First of all you need to install node modules, to do that you have to use the 'npm install' command on blog folder with a terminal
-2. Then 'ng serve' command will be sufficient for run this project. Project will be hosted at 4200 port, therefore you can check the site from 'http://localhost:4200/'
+1. First of all you need to install node modules, to do that you have to use the `npm install` command on blog folder with a terminal
+2. Then `ng serve` command will be sufficient for run this project. Project will be hosted at 4200 port, therefore you can check the site from http://localhost:4200/
 
 ## Additional Commands
-Of course you can use any command that angular supports initially, like 'ng build'.
+Of course you can use any command that angular supports initially, like `ng build`.
 
 ## Personel Notes
 I didn't use any UI component libraries because I didn't want to put such a heavy burden to this kind of project. I used bootstrap and try to developed as much as lightweight I could, because I can write my own components if I have to, I just didn't want to be dependent to libraries in this project. 
