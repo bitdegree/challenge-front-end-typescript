@@ -38,10 +38,10 @@
                     <span class="text-success">{{post?.user.address.street}}, {{post?.user.address.city}}</span>
                 </div>
                 <span>
-                    <a href="javascript:void(0)" mat-mini-fab color="accent" class="me-1">
+                    <a [href]="'http://'+post?.user.website" target="_blank" mat-mini-fab color="accent">
                         <mat-icon>link</mat-icon>
                     </a>
-                    <a href="javascript:void(0)" mat-mini-fab color="warn">
+                    <a [href]="'mailto:'+post?.user.email" mat-mini-fab color="warn">
                         <mat-icon>email</mat-icon>
                     </a>
                 </span>
