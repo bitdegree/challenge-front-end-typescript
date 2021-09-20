@@ -24,5 +24,5 @@ export {
   unHashDetail,
   isObjectEmpty,
   hyphenIze,
-  isNullOrUndefined
+  isNullOrUndefined,
 };

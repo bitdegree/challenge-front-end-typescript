@@ -28,7 +28,7 @@ export class PostFormComponent implements OnInit {
     private posts: PostService,
     private auth: AuthService,
     private router: Router,
-    private loader: LoaderService
+    private loader: LoaderService,
   ) {}
 
   ngOnInit(): void {

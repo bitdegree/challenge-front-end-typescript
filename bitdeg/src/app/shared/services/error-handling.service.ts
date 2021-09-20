@@ -41,7 +41,7 @@ export class ErrorHandlerService {
           errMsgs.push({ desc: fieldError });
         }
         /**Form components should listen to errMsgs observable to display errors from their form */
-        
+
         this.errMsgs.next(errMsgs);
       } else if (error.status === 405) {
         //method not allowed (e.g useful for automatic form save ie. error would trigger update instead of create)

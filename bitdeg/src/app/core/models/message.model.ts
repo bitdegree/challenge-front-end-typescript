@@ -9,7 +9,6 @@ interface BitdegMessage {
   alertDuration?: number;
 }
 
-
 interface BitdegMessageRef {
   message: BitdegMessage;
   afterClose: Subject<any>;

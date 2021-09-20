@@ -4,10 +4,10 @@ const AUTH_CONST = {
 };
 
 /**Local storage key for theme payload */
-const THEME  = {
+const THEME = {
   current: "currentTheme",
   dark: "dark-theme",
-  light: "light-theme"
-}
+  light: "light-theme",
+};
 
 export { AUTH_CONST, THEME };

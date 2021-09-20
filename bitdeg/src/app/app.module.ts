@@ -22,7 +22,7 @@ import {
   PostFormComponent,
   PostListComponent,
 } from "./index";
-import { SigninComponent } from './auth/signin/signin.component';
+import { SigninComponent } from "./auth/signin/signin.component";
 
 @NgModule({
   declarations: [

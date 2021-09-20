@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit {
   isDarkMode = (): boolean =>
     (this.darkMode = this.storage.get<string>(THEME.current) === THEME.dark);
 
-    /**For sign in dialog */
+  /**For sign in dialog */
   openAuthDialog = (): void => {
     this.dialog.open(SigninComponent, {
       minWidth: "30vw",
