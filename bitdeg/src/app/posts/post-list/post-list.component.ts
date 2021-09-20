@@ -1,9 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { BlogPost, PageSearch, Post, User } from "@core/models";
 import { hashDetail, hyphenIze } from "@core/utils";
 import { UntilDestroy } from "@ngneat/until-destroy";
 import { PostService } from "@posts/post.service";
+import { LoaderService } from "@shared/services/loader.service";
 import { PhotoService } from "@shared/services/photo.service";
 import { UserService } from "@shared/services/user.service";
 import { combineLatest, Observable } from "rxjs";
@@ -14,11 +15,13 @@ import { map } from "rxjs/operators";
   selector: "bitdeg-post-list",
   templateUrl: "./post-list.component.html",
   styleUrls: ["./post-list.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PostListComponent implements OnInit {
   postsPageSearch: PageSearch<Post> = new PageSearch(new Post());
   usersPageSearch: PageSearch<User> = new PageSearch(new User());
   posts$: Observable<Array<BlogPost>>;
+  loading$: Observable<boolean>;
 
   hashParam = hashDetail;
   hyphenise = hyphenIze;
@@ -27,9 +30,11 @@ export class PostListComponent implements OnInit {
     private userSe: UserService,
     private photoSe: PhotoService,
     private router: Router,
+    private loader: LoaderService,
   ) {}
 
   ngOnInit(): void {
+    this.loading$ = this.loader.loading$;
     this.getAllPosts();
   }
 

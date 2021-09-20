@@ -5,8 +5,9 @@ import { Post } from "@core/models";
 import { UntilDestroy } from "@ngneat/until-destroy";
 import { PostService } from "@posts/post.service";
 import { AuthService } from "@shared/services/auth.service";
-import { EMPTY, of } from "rxjs";
-import { delay, exhaustMap, tap } from "rxjs/operators";
+import { LoaderService } from "@shared/services/loader.service";
+import { EMPTY, Observable, of } from "rxjs";
+import { debounceTime, exhaustMap, tap } from "rxjs/operators";
 
 @UntilDestroy({ checkProperties: true })
 @Component({
@@ -21,16 +22,19 @@ export class PostFormComponent implements OnInit {
   @Output() editSaved = new EventEmitter<Post>();
   editMode: boolean;
   userId: number; //signed in user id
+  loading$: Observable<boolean>;
   constructor(
     private fb: FormBuilder,
     private posts: PostService,
     private auth: AuthService,
     private router: Router,
+    private loader: LoaderService
   ) {}
 
   ngOnInit(): void {
     this.auth.activeUser.subscribe((user) => (this.userId = user?.id));
     this.getUserId();
+    this.loading$ = this.loader.loading$;
   }
 
   getUserId = (): void => {
@@ -58,12 +62,12 @@ export class PostFormComponent implements OnInit {
   };
 
   /**
-   * Save changes to form every 5 seconds provided form is valid
+   * Save changes to form every 15 seconds provided form is valid
    */
   autoSave = (): void => {
     this.postForm.valueChanges
       .pipe(
-        delay(5000),
+        debounceTime(1000),
         exhaustMap((post, index) => {
           if (this.isFormValid()) {
             return index > 1 || this.editMode
@@ -72,7 +76,7 @@ export class PostFormComponent implements OnInit {
           }
           return EMPTY;
         }),
-        tap(() => !this.editMode && (this.editMode = true),),
+        tap(() => !this.editMode && (this.editMode = true)),
       )
       .subscribe((resp) => {
         if (resp) this.savedAt = Date.now();

@@ -5,10 +5,20 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatDialogModule } from "@angular/material/dialog";
 
-import { LazyImageDirective, HeaderComponent, FooterComponent } from "./index";
+import {
+  LazyImageDirective,
+  HeaderComponent,
+  FooterComponent,
+  MessageComponent,
+} from "./index";
 
 @NgModule({
-  declarations: [LazyImageDirective, HeaderComponent, FooterComponent],
+  declarations: [
+    LazyImageDirective,
+    HeaderComponent,
+    FooterComponent,
+    MessageComponent,
+  ],
   imports: [
     CommonModule,
     MatIconModule,
@@ -16,6 +26,11 @@ import { LazyImageDirective, HeaderComponent, FooterComponent } from "./index";
     MatMenuModule,
     MatDialogModule,
   ],
-  exports: [LazyImageDirective, HeaderComponent, FooterComponent],
+  exports: [
+    LazyImageDirective,
+    HeaderComponent,
+    FooterComponent,
+    MessageComponent,
+  ],
 })
 export class SharedModule {}

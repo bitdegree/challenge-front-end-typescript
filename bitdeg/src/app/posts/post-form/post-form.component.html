@@ -19,7 +19,10 @@
         </mat-form-field>
 
         <div class="d-flex justify-content-end">
-            <small class="text-muted flex-grow-1" *ngIf="savedAt">Saved at {{savedAt|date:"shortTime"}}</small>
+            <ng-template #sat>
+                <small class="text-muted flex-grow-1" *ngIf="savedAt">Saved at {{savedAt|date:"shortTime"}}</small>
+            </ng-template>
+            <span class="text-muted flex-grow-1" *ngIf="loading$|async;else sat">Saving...</span>
             <button type="button" mat-flat-button color="accent" class="flex-shrink-1" (click)="save()">Post</button>
         </div>
     </form>
