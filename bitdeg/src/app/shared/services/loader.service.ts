@@ -9,6 +9,7 @@ export class LoaderService {
   loadingReqs: Array<{ loading: boolean; url: string }> = [];
   constructor() {}
 
+  /**Toggle loading state, ensure if there are multiple requests at once loading state is persisted */
   setLoading = (state: boolean, url: string): void => {
     if (!url) {
       throw new Error("Loading Service: Request url not set");

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { BlogPost, PageSearch, Post, User } from "@core/models";
 import { hashDetail, hyphenIze } from "@core/utils";
@@ -15,7 +15,6 @@ import { map } from "rxjs/operators";
   selector: "bitdeg-post-list",
   templateUrl: "./post-list.component.html",
   styleUrls: ["./post-list.component.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostListComponent implements OnInit {
   postsPageSearch: PageSearch<Post> = new PageSearch(new Post());

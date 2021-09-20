@@ -24,6 +24,7 @@ export class MessageService {
     return ref;
   };
 
+  /**Use of a ref allows for multiple alerts and removal of each one */
   hide = (ref?: BitdegMessageRef): void => {
     if (ref) {
       this.messages.splice(ref.message.id!, 1); //alert is removed and array length changes(reduces), therefore invalidating original id

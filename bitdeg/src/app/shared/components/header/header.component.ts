@@ -30,9 +30,9 @@ export class HeaderComponent implements OnInit {
     this.currentTheme();
   }
 
+  /**If theme not set before set and persist theme  */
   currentTheme = (): void => {
     if (!this.storage.exists(THEME.current)) {
-      document.querySelector("body").classList.add(THEME.dark);
       this.storage.save(THEME.current, THEME.dark);
     }
     this.isDarkMode();
@@ -52,6 +52,7 @@ export class HeaderComponent implements OnInit {
   isDarkMode = (): boolean =>
     (this.darkMode = this.storage.get<string>(THEME.current) === THEME.dark);
 
+    /**For sign in dialog */
   openAuthDialog = (): void => {
     this.dialog.open(SigninComponent, {
       minWidth: "30vw",

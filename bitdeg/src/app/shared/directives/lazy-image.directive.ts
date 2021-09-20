@@ -26,9 +26,9 @@ export class LazyImageDirective implements OnInit {
     this.isImageInView() && this.loadImage();
   }
 
+  /**Check if top of image and its bottom is in view  */
   private isImageInView = (): boolean => {
     const rect = this.el.nativeElement.getBoundingClientRect();
-    console.log(this.el.nativeElement, rect.bottom)
     return (
       rect.top >= 0 &&
       rect.bottom <=
@@ -46,6 +46,8 @@ export class LazyImageDirective implements OnInit {
       this.imageUrl = this.imageUrl;
     };
   };
+
+  /**Remove current hex code and add generated one to allow for multiple placeholder colors in absence of real images */
 
   private replaceHex = (url: string): string => {
     return url.replace(url.substr(url.lastIndexOf("/")), `/${randomColor()}`);

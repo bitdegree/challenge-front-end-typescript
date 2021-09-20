@@ -15,6 +15,7 @@ export class AuthService {
     private msg: MessageService,
   ) {}
 
+  /**Persist supplied user to mimic authenticated state */
   signIn = (user: User): Observable<string> => {
     this.storage.save<User>(AUTH_CONST.USER_KEY, user);
     this.activeUser.next(user);

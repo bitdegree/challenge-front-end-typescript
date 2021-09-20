@@ -2,42 +2,25 @@
 <button mat-flat-button color="primary" class="pill-button" (click)="toCreatePost()">Create post</button>
 
 <!-- SKELETON LOADER -->
-<section class="row mt-3 --sekeleton-loader" *ngIf="loading$|async; else postList">
-    <div class="col-12 col-lg-6 mb-3">
-        <div class="image-placeholder"></div>
-        <div class="d-flex justify-content-between justify-content-lg-start mt-1 mt-lg-2">
-            <div class="rounded-circle img-bg me-2"></div>
-            <div class="d-flex flex-column">
-                <span class="fw-normal text-wrap">XX XXXXX XXX X XXXX XXXXX</span>
-                <span class="text-color">XXXX XXX</span>
-                <small class="text-muted text-wrap">XXXXX xXXXX XXXX XXX XXXX XXXXXXXXX XXXXXXXXX XXXX. xXXXX
-                    XXXXXXXX XXXXXXX XXXXXXXXXX XXXXXX.</small>
-            </div>
-        </div>
-    </div>
-</section>
 
-<ng-template #postList>
-    <section class="row mt-3">
-        <ng-container *ngFor="let post of posts$|async">
-            <a [routerLink]="['/posts', hyphenise(post.title), hashParam(post.userId.toString()), hashParam(post.id.toString())]"
-                class="col-12 col-lg-6 mb-3">
-                <div class="image-placeholder">
-                    <img src="" [bitdegLazyImage]="post.images.original" class="img-fluid w-100 h-100"
-                        [alt]="post.title">
+
+<section class="row mt-3">
+    <ng-container *ngFor="let post of posts$|async">
+        <a [routerLink]="['/posts', hyphenise(post.title), hashParam(post.userId.toString()), hashParam(post.id.toString())]"
+            class="col-12 col-lg-6 mb-3">
+            <div class="image-placeholder">
+                <img src="" [bitdegLazyImage]="post.images.original" class="img-fluid w-100 h-100" [alt]="post.title">
+            </div>
+            <div class="d-flex justify-content-between justify-content-lg-start mt-1 mt-lg-2">
+                <div class="rounded-circle img-bg me-2">
+                    <img src="" [bitdegLazyImage]="post.images.thumbnail" class="rounded-circle img-fluid w-100 h-100">
                 </div>
-                <div class="d-flex justify-content-between justify-content-lg-start mt-1 mt-lg-2">
-                    <div class="rounded-circle img-bg me-2">
-                        <img src="" [bitdegLazyImage]="post.images.thumbnail"
-                            class="rounded-circle img-fluid w-100 h-100">
-                    </div>
-                    <div class="d-flex flex-column">
-                        <span class="fw-normal text-wrap">{{post.title|titlecase}}</span>
-                        <span class="text-color">{{post.user.name|titlecase}}</span>
-                        <small class="text-muted text-wrap">{{post.body.substr(1,100)+"..."}}</small>
-                    </div>
+                <div class="d-flex flex-column">
+                    <span class="fw-normal text-wrap">{{post.title|titlecase}}</span>
+                    <span class="text-color">{{post.user.name|titlecase}}</span>
+                    <small class="text-muted text-wrap">{{post.body.substr(1,100)+"..."}}</small>
                 </div>
-            </a>
-        </ng-container>
-    </section>
-</ng-template>
+            </div>
+        </a>
+    </ng-container>
+</section>
