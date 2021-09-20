@@ -1,0 +1,81 @@
+.formContainer {
+  margin: 40px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  padding: 30px 0px 10px 0px;
+}
+
+.form {
+  width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.formLabel {
+  display: block;
+  width: 100%;
+  margin: 15px 0px 5px 0px;
+}
+.formInput {
+  width: 100%;
+  font-size: 0.875rem;
+  color: #8f8b8b;
+  padding: 10px 5px;
+  margin-bottom: 20px;
+  border: 0.5px solid #bdbdbd;
+  border-radius: 2px;
+}
+.formInput:focus {
+  padding: 10px 5px;
+  border: none;
+  outline-color: #3772ff !important;
+}
+.formTextArea {
+  width: 100% !important;
+  height: 100px !important;
+  max-height: 150px;
+  padding: 10px 5px;
+}
+.submitButton {
+  background-color: #3772ff;
+  color: #fff;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+.submitButton:hover {
+  background-color: #1758f2;
+}
+.submitButton:disabled {
+  cursor: not-allowed;
+}
+
+.message {
+  width: 100%;
+  color: green;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 400px) and (max-width: 768px) {
+  .form {
+    padding: 0px 25px;
+  }
+}
+
+@media only screen and (max-width: 399px) {
+  .form {
+    padding: 0px 20px;
+  }
+}

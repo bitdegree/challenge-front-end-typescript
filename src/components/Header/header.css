@@ -1,0 +1,11 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .headerSubTitle {
+    color: #888;
+    font-weight: 400;
+    font-size: 15px;
+  }

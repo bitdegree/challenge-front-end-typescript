@@ -1,0 +1,50 @@
+.paginationContainer {
+  width: 100%;
+  max-width: 1400px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.previous,
+.next,
+.currentPage,
+.paginationPreposition,
+.totalPageCount {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 23px;
+  text-align: center;
+  color: #3f3f3f;
+}
+.currentPage {
+  padding: 2.5px 10px;
+  background: #fff;
+  border: 1px solid #3f3f3f;
+  border-radius: 3px;
+  font-weight: 400;
+  text-align: center;
+}
+.paginationPreposition,
+.totalPageCount {
+  font-weight: 400;
+}
+.pageNumber {
+  display: flex;
+  gap: 7px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.previousPageButton,
+.nextPageButton {
+  text-decoration: none;
+  color: #3f3f3f;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+}

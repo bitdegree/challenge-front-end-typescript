@@ -1,0 +1,39 @@
+.postCard {
+  background-color: #fff;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.postCard:first-of-type {
+  margin-top: 50px;
+}
+
+.postCardContent {
+  padding: 15px;
+}
+
+.postCard h2 {
+  margin: 0;
+  font-weight: 400;
+  color: #404040;
+  font-size: 1rem;
+  line-height: 20px;
+}
+.postCard h2::first-letter {
+  text-transform: capitalize;
+}
+
+.postCard p {
+  font-size: 0.875rem;
+  color: #888;
+  line-height: 19px;
+  word-break: break-word;
+}
+.postCard p::first-letter {
+  text-transform: capitalize;
+}
+.linkToPost {
+  text-decoration: none;
+  color: #3772ff;
+}

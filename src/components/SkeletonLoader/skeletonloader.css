@@ -1,0 +1,9 @@
+.skeletonLoader {
+  height: 200px;
+  width: inherit;
+  margin-bottom: 20px;
+  background-color: #f2f2f296;
+}
+.skeletonLoader:first-of-type {
+  margin-top: 50px;
+}
