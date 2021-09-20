@@ -1,0 +1,12 @@
+@import "layout.scss";
+
+.msg-wrapper {
+  top: 2rem;
+  left: 45%;
+   @media (max-width: $layout-breakpoint-large) {
+    left: 10%;
+    max-width: 80vw !important;
+  }
+  max-width: 30vw;
+  z-index: 1000;
+}
