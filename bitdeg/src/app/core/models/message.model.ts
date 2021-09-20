@@ -1,5 +1,6 @@
 import { Subject } from "rxjs";
 
+/**Message Interfaces for in app alert messages */
 interface BitdegMessage {
   id?: number;
   code?: string;
@@ -7,6 +8,7 @@ interface BitdegMessage {
   type: MessageType;
   alertDuration?: number;
 }
+
 
 interface BitdegMessageRef {
   message: BitdegMessage;

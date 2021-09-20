@@ -15,7 +15,7 @@ import { map } from "rxjs/operators";
   selector: "bitdeg-post-list",
   templateUrl: "./post-list.component.html",
   styleUrls: ["./post-list.component.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostListComponent implements OnInit {
   postsPageSearch: PageSearch<Post> = new PageSearch(new Post());
@@ -38,6 +38,9 @@ export class PostListComponent implements OnInit {
     this.getAllPosts();
   }
 
+  /**Since posts api does not return user payload, combine all data needed to display blog
+   * post: Post, User, Photo
+   */
   getAllPosts = (): void => {
     this.posts$ = combineLatest([
       this.postSe.findAll(this.postsPageSearch),

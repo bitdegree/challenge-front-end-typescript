@@ -30,16 +30,17 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.checkLogin();
+    return this.checkLogin(state.url);
   }
 
-  checkLogin = (): boolean => {
+  /**If user payload does not exist in local storage, prompt for signin and set redirect to true to enable redirect to guarded route */
+  checkLogin = (url: string): boolean => {
     if (!this.storage.exists(AUTH_CONST.USER_KEY)) {
       this.dialog.open(SigninComponent, {
         minWidth: "30vw",
         data: {
           redirect: true,
-          url: "create-post"
+          url: url,
         },
       });
       return false;

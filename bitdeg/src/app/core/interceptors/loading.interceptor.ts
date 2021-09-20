@@ -14,7 +14,7 @@ export class LoadingInterceptor implements HttpInterceptor {
   constructor(private loader: LoaderService) {}
 
 
-
+ /**Toggle loader state on start and completion of request */
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler,

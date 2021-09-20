@@ -2,8 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { User } from "@core/models";
+import { THEME } from "@core/utils/app.const";
 import { UntilDestroy } from "@ngneat/until-destroy";
 import { AuthService } from "@shared/services/auth.service";
+import { LocalStorageService } from "@shared/services/local-storage.service";
 import { SigninComponent } from "app/auth/signin/signin.component";
 import { Observable } from "rxjs";
 
@@ -11,7 +13,7 @@ import { Observable } from "rxjs";
 @Component({
   selector: "bitdeg-header",
   templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.scss"],
+  styleUrls: [],
 })
 export class HeaderComponent implements OnInit {
   user$: Observable<User>;
@@ -20,26 +22,35 @@ export class HeaderComponent implements OnInit {
     private auth: AuthService,
     private dialog: MatDialog,
     private router: Router,
+    private storage: LocalStorageService,
   ) {}
 
   ngOnInit(): void {
     this.user$ = this.auth.activeUser;
-    this.darkMode = this.check();
+    this.currentTheme();
   }
 
-  test() {
-    const body = document.querySelector("body");
-    body.classList.contains("light-theme")
-      ? body.classList.replace("light-theme", "dark-theme")
-      : body.classList.contains("dark-theme")
-      ? body.classList.replace("dark-theme", "light-theme")
-      : body.classList.add("dark-theme");
-    this.darkMode = this.check();
-  }
+  currentTheme = (): void => {
+    if (!this.storage.exists(THEME.current)) {
+      document.querySelector("body").classList.add(THEME.dark);
+      this.storage.save(THEME.current, THEME.dark);
+    }
+    this.isDarkMode();
+  };
 
-  check(): boolean {
-    return document.querySelector("body").classList.contains("dark-theme");
-  }
+  switchTheme = (): void => {
+    let newTheme = THEME.dark;
+    const currentTheme = this.storage.get<string>(THEME.current);
+    currentTheme === THEME.dark
+      ? (newTheme = THEME.light)
+      : (newTheme = THEME.dark);
+    document.querySelector("body").classList.replace(currentTheme, newTheme);
+    this.storage.save(THEME.current, newTheme);
+    this.isDarkMode();
+  };
+
+  isDarkMode = (): boolean =>
+    (this.darkMode = this.storage.get<string>(THEME.current) === THEME.dark);
 
   openAuthDialog = (): void => {
     this.dialog.open(SigninComponent, {

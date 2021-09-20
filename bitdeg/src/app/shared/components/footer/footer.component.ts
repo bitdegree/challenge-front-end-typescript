@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 @Component({
   selector: "bitdeg-footer",
   templateUrl: "./footer.component.html",
-  styleUrls: ["./footer.component.scss"],
+  styleUrls: [],
 })
 export class FooterComponent implements OnInit {
   constructor() {}

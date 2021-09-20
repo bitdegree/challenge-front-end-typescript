@@ -5,11 +5,12 @@ import { UntilDestroy } from "@ngneat/until-destroy";
 import { AuthService } from "@shared/services/auth.service";
 import { LocalStorageService } from "@shared/services/local-storage.service";
 
+/**Until destroy decorator automatically unsubscribes from all subscriptions on destroy of component */
 @UntilDestroy({ checkProperties: true })
 @Component({
   selector: "bitdeg-home",
   templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.scss"],
+  styleUrls: [],
 })
 export class HomeComponent implements OnInit {
   constructor(

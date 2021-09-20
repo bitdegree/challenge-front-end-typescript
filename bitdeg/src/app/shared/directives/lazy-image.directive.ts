@@ -28,6 +28,7 @@ export class LazyImageDirective implements OnInit {
 
   private isImageInView = (): boolean => {
     const rect = this.el.nativeElement.getBoundingClientRect();
+    console.log(this.el.nativeElement, rect.bottom)
     return (
       rect.top >= 0 &&
       rect.bottom <=

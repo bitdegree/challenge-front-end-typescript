@@ -10,6 +10,7 @@ import { UserService } from "@shared/services/user.service";
 import { combineLatest } from "rxjs";
 import { map } from "rxjs/operators";
 
+/**Until destroy decorator automatically unsubscribes from all subscriptions on destroy of component */
 @UntilDestroy({ checkProperties: true })
 @Component({
   selector: "bitdeg-post-details",
@@ -47,6 +48,9 @@ export class PostDetailsComponent implements OnInit {
     });
   };
 
+  /**Since posts api does not return user payload, combine all data needed to display blog
+   * post: Post, User, Photo
+   */
   getPost = (postId: number, userId: number): void => {
     const state = this.location.getState() as { post: BlogPost };
     if (!state[`post`]) {
@@ -75,7 +79,10 @@ export class PostDetailsComponent implements OnInit {
     } else this.post = state[`post`];
   };
 
-  onEditSaved = ($event: Post): void=> {
+  /**Editing of post is done within this component to allow for seamless experience
+   * especially when making quick edits. Get edited post data when saved in @class PostFormComponent
+   */
+  onEditSaved = ($event: Post): void => {
     this.post.title = $event.title;
     this.post.body = $event.body;
     this.editMode = false;

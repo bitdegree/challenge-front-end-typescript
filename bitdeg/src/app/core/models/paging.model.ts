@@ -1,3 +1,6 @@
+/**Class intended to handle server pagination responses and pagination request parameters to server
+ * without having to manually enter pagination request params
+ */
 class PageSearch<T> {
   page: Paging = new Paging();
   data!: T;

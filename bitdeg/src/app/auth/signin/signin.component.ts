@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: "bitdeg-signin",
   templateUrl: "./signin.component.html",
-  styleUrls: ["./signin.component.scss"],
+  styleUrls: [],
 })
 /**
  * This component mimics an authentication logic, providing user
@@ -36,6 +36,7 @@ export class SigninComponent implements OnInit {
 
   close = (): void => this.dialogRef.close();
 
+  /**Redirect user if user was trying to access guarded route before prompted to signin */
   signin = (user: User): void => {
     this.auth.signIn(user).subscribe((_) => {
       this.dialogRef.close(true);
