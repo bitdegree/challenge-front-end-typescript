@@ -16,6 +16,10 @@ const Pagination = (props: PaginationProps) => {
 
   const handleNextPageChange = (page: number) => {
     setCurrentPage(page + 1);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
     if (page === pagesCount) {
       setCurrentPage(page);
     } else {
@@ -25,6 +29,10 @@ const Pagination = (props: PaginationProps) => {
 
   const handlePreviousPageChange = (page: number) => {
     setCurrentPage(page - 1);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
     if (page === 1) {
       setCurrentPage(1);
     }

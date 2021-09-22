@@ -30,6 +30,8 @@ const EditPostPage = () => {
     body: post.body,
   });
 
+  const { title, body } = state;
+
   const editPost = async (
     id: number,
     title: string,
@@ -81,8 +83,8 @@ const EditPostPage = () => {
         handleSubmit={handleSubmit}
         handleChange={handleChange}
         buttonText="Save Post"
-        title={state.title}
-        body={state.body}
+        title={title}
+        body={body}
       />
     </>
   );

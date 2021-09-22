@@ -3,7 +3,6 @@ import Navigation from "../../components/Navigation/index";
 import Header from "../../components/Header/index";
 import Form from "../../components/Form/index";
 import "./dashboard.css";
-// import { useDispatch } from "react-redux";
 
 interface Event {
   target: Record<string, any>;
@@ -16,7 +15,7 @@ const Dashboard = () => {
     body: "",
   });
 
-  // const dispatch = useDispatch();
+  const { title, body } = state;
 
   const createPost = async (
     title: string,
@@ -65,8 +64,8 @@ const Dashboard = () => {
         handleSubmit={handleSubmit}
         handleChange={handleChange}
         buttonText="Create Post"
-        title={state.title}
-        body={state.body}
+        title={title}
+        body={body}
       />
     </>
   );

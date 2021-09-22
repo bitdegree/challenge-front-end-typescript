@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-export const paginate = (
+export const handlePagination = (
   posts: Record<string, any>[],
   pageNumber: number,
   pageSize: number

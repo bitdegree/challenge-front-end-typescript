@@ -8,14 +8,14 @@ import Card from "../../components/Card/index";
 import SkeletonLoader from "../../components/SkeletonLoader";
 import Pagination from "../../components/Pagination/index";
 import "./homepage.css";
-import { paginate } from "./../../utils/paginate";
+import { handlePagination } from "./../../utils/paginate";
 
 const HomePage = () => {
   const dispatch = useDispatch();
   const { posts, isLoading, hasErrors } = useSelector(postsSelector);
   const [currentPage, setCurrentPage] = useState(1);
   const PAGE_SIZE = 20;
-  const currentPagePosts = paginate(posts, currentPage, PAGE_SIZE);
+  const currentPagePosts = handlePagination(posts, currentPage, PAGE_SIZE);
 
   useEffect(() => {
     dispatch(fetchPosts());
