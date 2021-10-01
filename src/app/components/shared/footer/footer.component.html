@@ -1,0 +1,40 @@
+<div class="main">
+  <button mat-button class="logo-button" (click)="goToHome()">
+    <div class="logo-container">
+      <img src="{{ logo }}" alt="BitDegree logo" class="logo" />
+    </div>
+  </button>
+
+  <div class="icons">
+    <button mat-icon-button class="icon-button">
+      <fa-icon class="icon fa-lg" [icon]="facebook"></fa-icon>
+    </button>
+    <button mat-icon-button class="icon-button">
+      <fa-icon class="icon fa-lg" [icon]="twitter"></fa-icon>
+    </button>
+    <button mat-icon-button class="icon-button">
+      <fa-icon class="icon fa-lg" [icon]="linkedIn"></fa-icon>
+    </button>
+    <button mat-icon-button class="icon-button">
+      <fa-icon class="icon fa-lg" [icon]="youtube"></fa-icon>
+    </button>
+    <button mat-icon-button class="icon-button">
+      <fa-icon class="icon fa-lg" [icon]="medium"></fa-icon>
+    </button>
+    <button mat-icon-button class="icon-button">
+      <fa-icon class="icon fa-lg" [icon]="instagram"></fa-icon>
+    </button>
+    <button mat-icon-button class="icon-button">
+      <fa-icon class="icon fa-lg" [icon]="reddit"></fa-icon>
+    </button>
+    <button mat-icon-button class="icon-button">
+      <fa-icon class="icon fa-lg" [icon]="github"></fa-icon>
+    </button>
+  </div>
+
+  <div class="post-button">
+    <button mat-button (click)="goToPost()">POST A BLOG</button>
+  </div>
+</div>
+
+<div class="copy">@ Copyright 2021 BitDegree</div>

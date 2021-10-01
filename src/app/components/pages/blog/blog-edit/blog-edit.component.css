@@ -1,0 +1,49 @@
+.main {
+  margin: 100px 25vw 20px 25vw;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.form mat-form-field {
+  width: 100%;
+}
+
+.form .button {
+  background: var(--dark);
+  color: var(--white);
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: color .5s;
+  transition: background .5s;
+  margin-top: 20px;
+}
+
+.form .button:hover {
+  background: var(--white);
+  color: var(--dark);
+  transition: color .5s;
+  transition: background .5s;
+}
+
+.form .button.cancel {
+  background: var(--white);
+  color: var(--dark);
+}
+
+
+@media screen and (max-width: 500px) {
+  .main {
+    margin: 100px 5vw 20px 5vw;
+  }
+}

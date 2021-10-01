@@ -1,0 +1,27 @@
+<app-toolbar class="{{ toolbar ? '' : 'hidden' }}"></app-toolbar>
+
+<div class="main" id="top">
+  <div class="title d3">Post a blog</div>
+
+  <form class="form" (ngSubmit)="onSubmit()" method="POST">
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input required matInput name="inputTitle" [(ngModel)]="inputTitle" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Blog</mat-label>
+      <textarea
+        required
+        matInput
+        name="inputBlog"
+        [(ngModel)]="inputBlog"
+      ></textarea>
+    </mat-form-field>
+
+    <button mat-button class="button submit">SAVE CHANGES</button>
+    <button mat-button class="button cancel" (click)="goToHome()">
+      Cancel
+    </button>
+  </form>
+</div>

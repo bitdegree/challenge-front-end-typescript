@@ -1,0 +1,33 @@
+<app-toolbar
+  class="{{ toolbar ? '' : 'hidden' }} blog-page-toolbar"
+  [isEdit]="true"
+></app-toolbar>
+
+<div
+  class="main"
+  [ngStyle]="{
+    'background-image': 'url(' + blog.photo + ')'
+  }"
+  id="top"
+>
+  <div class="padding-top"></div>
+
+  <div class="background-white">
+    <div class="text">
+      <div class="name">Space</div>
+      <div class="title d1 tertiary-font">{{ blog.primaryTitle }}</div>
+      <div class="title d1">{{ blog.secondaryTitle }}</div>
+      <div class="location">MILKY WAY - October 1</div>
+    </div>
+
+    <div class="photo-container">
+      <img class="photo" src="{{ blog.photo }}" alt="{{ blog.photo }}" />
+    </div>
+
+    <div class="text">
+      <div class="body d4 tertiary-font">
+        {{ blog.body }} {{ blog.body }} {{ blog.body }} {{ blog.body }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+.main {
+  background-size: 100% 100vh;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+.padding-top {
+  padding-top: 100vh;
+  background-color: transparent;
+}
+
+.background-white {
+  background-color: var(--white);
+  padding-top: 20px;
+}
+
+.photo-container {
+  margin: 20px 25vw 20px 25vw;
+}
+
+.photo-container .photo {
+  width: 100%;
+}
+
+.text .name,
+.text .title,
+.text .location,
+.text .body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+  margin: 15px 25vw 15px 25vw;
+}
+
+.text .body {
+  text-transform: none;
+}
+
+@media screen and (max-width: 500px) {
+  .photo-container {
+    margin: 20px 5vw 20px 5vw;
+  }
+
+  .text .name,
+  .text .title,
+  .text .location,
+  .text .body {
+    margin: 15px 5vw 15px 5vw;
+  }
+}

@@ -1,0 +1,52 @@
+<mat-toolbar>
+  <div class="main">
+    <div class="edit-icon-container" *ngIf="isEdit"></div>
+    <div class="post-icon-container" *ngIf="isPost"></div>
+
+    <button mat-button class="logo-button" (click)="goToHome()">
+      <div class="logo-container">
+        <img src="{{ logo }}" alt="BitDegree" class="logo" />
+      </div>
+    </button>
+
+    <div class="edit-icon-container" *ngIf="isEdit">
+      <button
+        mat-button
+        class="edit-icon desktop tertiary-font"
+        aria-label="Edit text"
+        (click)="goToEdit()"
+      >
+        EDIT BLOG
+      </button>
+
+      <button
+        mat-icon-button
+        class="edit-icon mobile"
+        aria-label="Edit icon"
+        (click)="goToEdit()"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+
+    <div class="post-icon-container" *ngIf="isPost">
+      <button
+        mat-button
+        class="post-icon desktop tertiary-font"
+        aria-label="Post text"
+        (click)="goToPost()"
+      >
+        POST A BLOG
+      </button>
+
+      <button
+        mat-icon-button
+        class="post-icon mobile"
+        aria-label="Post icon"
+        (click)="goToPost()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-toolbar>

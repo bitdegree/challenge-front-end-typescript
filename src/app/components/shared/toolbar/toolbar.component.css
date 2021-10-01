@@ -1,0 +1,51 @@
+.main {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-container {
+  height: 45px;
+}
+
+.logo-button {
+  flex-grow: 1;
+}
+
+.logo {
+  height: 100%;
+}
+
+.post-icon-container,
+.edit-icon-container {
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.post-icon.mobile,
+.edit-icon.mobile {
+  display: none;
+}
+
+@media screen and (max-width: 500px) {
+
+  .post-icon-container,
+  .edit-icon-container {
+    width: 40px;
+  }
+
+  .post-icon.desktop,
+  .edit-icon.desktop {
+    display: none;
+  }
+
+  .post-icon.mobile,
+  .edit-icon.mobile {
+    display: unset;
+  }
+}

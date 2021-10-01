@@ -1,0 +1,24 @@
+<div
+  class="{{
+    blog.user % 2 === 0 ? 'main main-reverse' : 'main' + ' blog-' + blog.user
+  }}"
+>
+  <div class="photo-container">
+    <button mat-button (click)="goToPath()">
+      <img class="photo" src="{{ blog.photo }}" alt="{{ blog.photo }}" />
+    </button>
+  </div>
+
+  <div class="text">
+    <div class="name">Space</div>
+    <div class="title-container">
+      <div class="title d2 tertiary-font">{{ blog.blogs[0].primaryTitle }}</div>
+      <div class="title d2">{{ blog.blogs[0].secondaryTitle }}</div>
+    </div>
+    <app-button
+      class="button"
+      text="READ MORE"
+      (click)="goToPath()"
+    ></app-button>
+  </div>
+</div>

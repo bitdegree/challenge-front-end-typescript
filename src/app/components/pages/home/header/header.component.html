@@ -1,0 +1,32 @@
+<app-toolbar
+  class="{{ toolbar ? '' : 'hidden' }}"
+  [isPost]="true"
+></app-toolbar>
+
+<div class="main">
+  <div class="nav">
+    <button mat-button class="logo-button" (click)="goToHome()">
+      <div class="image-container">
+        <img src="{{ logo }}" alt="BitDegree" class="logo" />
+      </div>
+    </button>
+  </div>
+
+  <div class="text">
+    <div class="d1 secondary-font primary">Blog a blog for a</div>
+    <div class="d2 secondary">WONDERFUL BLOG</div>
+    <div class="text-button-container">
+      <button class="text-button s1" mat-flat-button (click)="scroll()">
+        READ
+      </button>
+    </div>
+  </div>
+
+  <h1 mat-dialog-title>Favorite Animal</h1>
+  <div mat-dialog-content>
+    My favorite animal is:
+    <ul>
+      <li><span *ngIf="true">&#10003;</span> Panda</li>
+    </ul>
+  </div>
+</div>
