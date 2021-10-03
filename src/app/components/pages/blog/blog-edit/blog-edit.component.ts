@@ -1,9 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DialogComponent } from 'src/app/components/shared/dialog/dialog.component';
 import { BlogService } from 'src/app/services/blog.service';
-import { CONSTANTS } from 'src/assets/constants';
-import { photo } from 'src/utils/types';
-import { Blog, UpdatedBlog } from '../../home/blogs/blogs';
+import { Blog } from '../../home/blogs/blogs';
 
 @Component({
   selector: 'app-blog-edit',
@@ -11,48 +11,48 @@ import { Blog, UpdatedBlog } from '../../home/blogs/blogs';
   styleUrls: ['./blog-edit.component.css'],
 })
 export class BlogEditComponent implements OnInit {
-  blog: Blog;
-  toolbar = false;
+  isToolbar = false;
+  inputTitle: string;
+  inputBlog: string;
+  currentPosition: number;
+  startPosition: number;
 
   constructor(
     private route: ActivatedRoute,
     private blogService: BlogService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     const route = this.route.snapshot.params.name;
     const endpoint = route === '1' ? '1' : route - 1 + '1';
-    const photoId = ('photo' + route) as photo['photos'];
-    const photo = CONSTANTS[photoId];
 
     this.blogService.getBlog(endpoint).subscribe((blog: Blog) => {
-      const updatedBlog = { ...blog, photo };
-      this.blog = updatedBlog;
+      this.inputTitle = blog.title;
+      this.inputBlog = blog.body;
     });
   }
 
   private scrollChangeCallback: () => void;
-  currentPosition: number;
-  startPosition: number;
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.scrollChangeCallback = () => this.onContentScrolled(event);
     window.addEventListener('scroll', this.scrollChangeCallback, true);
   }
 
-  onContentScrolled(e: any) {
+  onContentScrolled(e: any): void {
     this.startPosition = e.srcElement.scrollTop;
     let scroll = e.srcElement.scrollTop;
     if (scroll > this.currentPosition) {
-      this.toolbar = false;
+      this.isToolbar = false;
     } else {
-      this.toolbar = true;
+      this.isToolbar = true;
     }
     this.currentPosition = scroll;
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     window.removeEventListener('scroll', this.scrollChangeCallback, true);
   }
 
@@ -66,22 +66,39 @@ export class BlogEditComponent implements OnInit {
     setTimeout(() => this.scrollToTop(), 333);
   }
 
-  onSubmit() {
-    // Handle empty input
-    if (!this.blog.title) return console.log('Handle title');
-    if (!this.blog.body) return console.log('Handle blog');
+  onSubmit(): void {
+    if (!this.inputTitle || !this.inputBlog) return;
 
     const updatedBlog = {
-      title: this.blog.title,
-      blog: this.blog.body,
+      title: this.inputTitle,
+      blog: this.inputBlog,
     };
 
-    this.blogService.updateBlog(updatedBlog).subscribe((response) => {
-      response;
-      // Handle response
-      console.log('Saved Successfully');
+    this.blogService.updateBlog(updatedBlog).subscribe(
+      (response) => {
+        // Handle response
+        response;
+        this.openDialog();
+      },
+      (error) => {
+        // Handle error
+        error;
+        this.openDialog();
+      }
+    );
+  }
+
+  openDialog(): void {
+    let dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: { title: this.inputTitle, secondaryButton: 'Edit Again' },
     });
 
-    this.goBack();
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) this.goBack();
+      else {
+        this.router.navigate([this.router.url]);
+      }
+    });
   }
 }

@@ -59,60 +59,10 @@
 
 @media screen and (max-width: 500px) {
   .main {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     margin-top: 20px;
-    box-shadow: 0px -4px 4px rgba(124, 124, 124, 0.2);
   }
 
   .icons {
     margin-top: 10px;
-  }
-
-  .logo-container {
-    width: 200px;
-    margin-top: 20px;
-    margin-bottom: 5px;
-  }
-
-  .logo {
-    width: 100%;
-  }
-
-  .icon {
-    transition: filter .3s;
-  }
-
-  .icon:hover {
-    filter: invert(35%) sepia(0%) saturate(1%) hue-rotate(159deg) brightness(96%) contrast(95%);
-    transition: filter .3s;
-  }
-
-
-  .post-button {
-    background-color: black;
-    color: var(--white);
-    font-family: 'Anton', Roboto, sans-serif !important;
-    transition: color .5s;
-    transition: background .5s;
-    border-radius: 4px;
-  }
-
-  .post-button:hover {
-    color: var(--dark);
-    background-color: white;
-    transition: color .5s;
-    transition: background .5s;
-  }
-
-  .copy {
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-    margin-bottom: 20px;
   }
 }

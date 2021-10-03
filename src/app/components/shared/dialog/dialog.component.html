@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Magnificent,</h1>
+<div mat-dialog-content>
+  <p class="tertiary-font">
+    <span class="bold"> {{ data.title }} </span>
+    <span> has been saved! </span>
+  </p>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    class="button"
+    [mat-dialog-close]="data.title"
+    cdkFocusInitial
+  >
+    Great
+  </button>
+  <button mat-button class="button secondary" (click)="onNoClick()">
+    {{ data.secondaryButton }}
+  </button>
+</div>

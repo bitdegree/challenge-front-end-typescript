@@ -1,4 +1,4 @@
-<app-toolbar class="{{ toolbar ? '' : 'hidden' }}"></app-toolbar>
+<app-toolbar class="{{ isToolbar ? '' : 'hidden' }}"></app-toolbar>
 
 <div class="main" id="top">
   <div class="title d3">Edit blog</div>
@@ -6,7 +6,7 @@
   <form class="form" (ngSubmit)="onSubmit()" method="PUT">
     <mat-form-field appearance="fill">
       <mat-label>Title</mat-label>
-      <input required matInput name="blog.title" [(ngModel)]="blog.title" />
+      <input required matInput name="blog.title" [(ngModel)]="inputTitle" />
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -15,7 +15,7 @@
         required
         matInput
         name="blog.body"
-        [(ngModel)]="blog.body"
+        [(ngModel)]="inputBlog"
       ></textarea>
     </mat-form-field>
 

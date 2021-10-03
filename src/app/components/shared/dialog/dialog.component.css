@@ -1,0 +1,28 @@
+.mat-dialog-actions {
+  display: flex;
+  width: 100%;
+}
+
+.button {
+  background: var(--dark);
+  color: var(--white);
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: color .5s;
+  transition: background .5s;
+  margin-top: 20px;
+}
+
+.button:hover {
+  background: var(--white);
+  color: var(--dark);
+  transition: color .5s;
+  transition: background .5s;
+}
+
+.button.secondary {
+  background: var(--white);
+  color: var(--dark);
+}

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BlogService } from 'src/app/services/blog.service';
-import { photo } from 'src/utils/types';
+import { makeBlog } from 'src/utils/functions';
 import { Blog } from '../../home/blogs/blogs';
-import { CONSTANTS } from '../../../../../assets/constants';
 
 @Component({
   selector: 'app-blog-page',
@@ -12,8 +11,9 @@ import { CONSTANTS } from '../../../../../assets/constants';
 })
 export class BlogComponent implements OnInit {
   blog: Blog;
-  isLoaded = false;
-  toolbar = false;
+  isToolbar = false;
+  currentPosition: any;
+  startPosition: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,45 +23,31 @@ export class BlogComponent implements OnInit {
   ngOnInit(): void {
     const route = this.route.snapshot.params.name;
     const endpoint = route === '1' ? '1' : route - 1 + '1';
-    const photoId = ('photo' + route) as photo['photos'];
-    const photo = CONSTANTS[photoId];
 
     this.blogService.getBlog(endpoint).subscribe((blog: Blog) => {
-      const titleArray = blog.title.split(' ');
-      const titleLength = titleArray.length;
-      const primaryTitle = titleArray.slice(0, titleLength / 2).join(' ');
-      const secondaryTitle = titleArray.slice(titleLength / 2).join(' ');
-      const updatedBlog = { ...blog, primaryTitle, secondaryTitle, photo };
-
-      this.blog = updatedBlog;
+      this.blog = makeBlog(blog, route);
     });
   }
 
-  showPage(): void {
-    this.isLoaded = true;
-  }
-
   private scrollChangeCallback: () => void;
-  currentPosition: any;
-  startPosition: number;
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.scrollChangeCallback = () => this.onContentScrolled(event);
     window.addEventListener('scroll', this.scrollChangeCallback, true);
   }
 
-  onContentScrolled(e: any) {
+  onContentScrolled(e: any): void {
     this.startPosition = e.srcElement.scrollTop;
     let scroll = e.srcElement.scrollTop;
     if (scroll > this.currentPosition) {
-      this.toolbar = false;
+      this.isToolbar = false;
     } else {
-      this.toolbar = true;
+      this.isToolbar = true;
     }
     this.currentPosition = scroll;
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     window.removeEventListener('scroll', this.scrollChangeCallback, true);
   }
 }

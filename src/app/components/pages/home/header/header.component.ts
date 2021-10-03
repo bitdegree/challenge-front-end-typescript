@@ -10,7 +10,9 @@ import { CONSTANTS } from '../../../../../assets/constants';
 })
 export class HeaderComponent implements OnInit {
   logo = CONSTANTS.bitDegreeLogo;
-  toolbar = false;
+  isToolbar = false;
+  currentPosition: any;
+  startPosition: number;
 
   constructor(private themeService: ThemeService, private router: Router) {}
 
@@ -31,17 +33,16 @@ export class HeaderComponent implements OnInit {
     setTimeout(() => this.scrollToTop(), 333);
   }
 
-  toggleTheme() {
-    if (this.themeService.isDarkTheme()) {
-      this.themeService.setLightTheme();
-    } else {
-      this.themeService.setDarkTheme();
-    }
-  }
+  // Handle theme
+  // toggleTheme() {
+  //   if (this.themeService.isDarkTheme()) {
+  //     this.themeService.setLightTheme();
+  //   } else {
+  //     this.themeService.setDarkTheme();
+  //   }
+  // }
 
   private scrollChangeCallback: () => void;
-  currentPosition: any;
-  startPosition: number;
 
   ngAfterViewInit() {
     this.scrollChangeCallback = () => this.onContentScrolled(event);
@@ -52,9 +53,9 @@ export class HeaderComponent implements OnInit {
     this.startPosition = e.srcElement.scrollTop;
     let scroll = e.srcElement.scrollTop;
     if (scroll > this.currentPosition || scroll < 100) {
-      this.toolbar = false;
+      this.isToolbar = false;
     } else {
-      this.toolbar = true;
+      this.isToolbar = true;
     }
     this.currentPosition = scroll;
   }

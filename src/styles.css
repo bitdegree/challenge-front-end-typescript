@@ -102,6 +102,10 @@ body {
   display: flex;
 }
 
+.bold {
+  font-weight: 700;
+}
+
 mat-toolbar {
   position: fixed;
   top: 0px;

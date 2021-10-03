@@ -1,7 +1,7 @@
  .main {
    background-color: white;
    background-repeat: no-repeat;
-   background: linear-gradient(0deg, var(--background-tertiary), rgba(0, 0, 0, 0.1)), url(https://cdn.pixabay.com/photo/2020/12/25/04/51/polar-lights-5858656_1280.jpg);
+   background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1)), url(https://cdn.pixabay.com/photo/2020/12/25/04/51/polar-lights-5858656_1280.jpg);
    background-attachment: fixed;
    background-position: center;
    background-size: cover;

@@ -39,6 +39,7 @@
 
 .text .body {
   text-transform: none;
+  margin-bottom: 40px;
 }
 
 @media screen and (max-width: 500px) {
@@ -51,5 +52,9 @@
   .text .location,
   .text .body {
     margin: 15px 5vw 15px 5vw;
+  }
+
+  .text .body {
+    margin-bottom: 40px;
   }
 }

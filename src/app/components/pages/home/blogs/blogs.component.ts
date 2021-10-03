@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { getPhotos, makeBlog } from 'src/utils/functions';
 import { CONSTANTS } from './../../../../../assets/constants';
 import { BlogService } from './../../../../services/blog.service';
 import { Blog, Blogs, SortedBlog } from './blogs';
@@ -12,29 +13,14 @@ export class BlogsComponent implements OnInit {
   sortedBlogs: SortedBlog[] = [];
   blogs: Blogs = [];
   users: number[];
-  photos: string[] = [
-    CONSTANTS.photo1,
-    CONSTANTS.photo2,
-    CONSTANTS.photo3,
-    CONSTANTS.photo4,
-    CONSTANTS.photo5,
-    CONSTANTS.photo6,
-    CONSTANTS.photo7,
-    CONSTANTS.photo8,
-    CONSTANTS.photo9,
-    CONSTANTS.photo10,
-  ];
+  photos: string[] = getPhotos();
 
   constructor(private blogService: BlogService) {}
 
   ngOnInit(): void {
     this.blogService.getBlogs().subscribe((blogs: Blog[]) => {
       const setBlog = (blog: Blog) => {
-        const titleArray = blog.title.split(' ');
-        const titleLength = titleArray.length;
-        const primaryTitle = titleArray.slice(0, titleLength / 2).join(' ');
-        const secondaryTitle = titleArray.slice(titleLength / 2).join(' ');
-        const updatedBlog = { ...blog, primaryTitle, secondaryTitle };
+        const updatedBlog = makeBlog(blog, blog.userId.toString());
         const blogId = blog.userId - 1;
 
         this.blogs[blogId] = this.blogs[blogId]
@@ -45,7 +31,6 @@ export class BlogsComponent implements OnInit {
       const getUsers = () =>
         blogs.map((blog) => {
           setBlog(blog);
-
           return blog.userId;
         });
 

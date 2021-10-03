@@ -11,14 +11,12 @@
 
   <div class="text">
     <div class="name">Space</div>
+
     <div class="title-container">
       <div class="title d2 tertiary-font">{{ blog.blogs[0].primaryTitle }}</div>
       <div class="title d2">{{ blog.blogs[0].secondaryTitle }}</div>
     </div>
-    <app-button
-      class="button"
-      text="READ MORE"
-      (click)="goToPath()"
-    ></app-button>
+
+    <button mat-button class="button" (click)="goToPath()">READ MORE</button>
   </div>
 </div>

@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ButtonComponent } from './components/global/button/button.component';
 import { BlogComponent } from './components/pages/home/blog/blog.component';
 import { BlogsComponent } from './components/pages/home/blogs/blogs.component';
 import { BlogComponent as BlogPageComponent } from './components/pages/blog/blog/blog-page.component';
@@ -16,6 +15,7 @@ import { BlogEditComponent } from './components/pages/blog/blog-edit/blog-edit.c
 import { FormsModule } from '@angular/forms';
 import { BlogPostComponent } from './components/pages/blog/blog-post/blog-post.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
+import { DialogComponent } from './components/shared/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +23,12 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     HeaderComponent,
     BlogsComponent,
     BlogComponent,
-    ButtonComponent,
     ToolbarComponent,
     BlogPageComponent,
     BlogEditComponent,
     BlogPostComponent,
     FooterComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
