@@ -3,7 +3,7 @@
 
 ## First steps
 1. Fork this repo
-2. Create a single-page application for a blogging website with Angular 2+ (or other JavaScript framework)
+2. Create a single-page application for a blogging website with Angular / Next / React
 4. Use TypeScript if your framework of choice supports it
 5. Prepare a pull request and let us know that you are done
 
@@ -14,13 +14,13 @@
 
 
 ## Requirements
-* Use the latest version of Angular
+* Use the latest version of Angular / Next / React
 * Use the API to retrieve data (details below)
-* Make sure the app is responsive and looks clean
+* Make sure the app is responsive and looks clean 💅
 * Use components where applicable
 
 
-<strong>Keep in mind that candidates who used TS  and/ or Angular 2+ will have an upper hand during the initial filtering.</strong>
+<strong>Keep in mind that candidates who used TypeScript will have an upper hand during the initial filtering.</strong>
 
 ## Functional requirements
 The website should have the following pages (components):
